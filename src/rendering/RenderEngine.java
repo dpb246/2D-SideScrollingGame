@@ -9,7 +9,7 @@ public class RenderEngine extends JPanel {
     private static RenderEngine instance = null;
     private final static  int Wanted_WIDTH = 1024;
     private final static  int Wanted_HEIGHT = 576;
-    private static CopyOnWriteArrayList<Renderable> objs;
+    private static CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
     private static Camera currentcam = null;
 
     private RenderEngine() {
@@ -19,14 +19,24 @@ public class RenderEngine extends JPanel {
         super.setDoubleBuffered(true);
         setLayout(null);
         setPreferredSize(new Dimension(Wanted_WIDTH, Wanted_HEIGHT));
+        setMaximumSize(new Dimension(Wanted_WIDTH, Wanted_HEIGHT));
+        setMinimumSize(new Dimension(Wanted_WIDTH, Wanted_HEIGHT));
+        repaint();
     }
     public static RenderEngine getInstance() {
         if (instance == null) instance = new RenderEngine();
         return instance;
     }
+    public RenderEngine setBackgroundColor(Color c) {
+        this.setBackground(c);
+        return getInstance();
+    }
     public RenderEngine setCamera(Camera newcam) {
         currentcam = newcam;
-        return getInstance();
+        return getInstance(); //cause why not
+    }
+    public Camera getCurrentcam() {
+        return currentcam;
     }
     @Override
     public void paintComponent(Graphics g) {
@@ -36,7 +46,7 @@ public class RenderEngine extends JPanel {
     }
     public Renderable add(Renderable obj) {
         objs.add(obj);
-        return obj;
+        return obj;  //Return obj passed to make nicer usage
     }
     /**
      * Draws all objects in GameWorld
@@ -47,6 +57,10 @@ public class RenderEngine extends JPanel {
         if (currentcam == null) throw new RuntimeException("Did not set current camera!");
         Graphics2D g2d = (Graphics2D) g;
         for (Renderable o : objs) {
+            if(o.shouldDelete()) {
+                objs.remove(o);
+                continue;
+            }
             o.draw(g2d, io, currentcam.getX(), currentcam.getY(), currentcam.getZoom());
         }
     }

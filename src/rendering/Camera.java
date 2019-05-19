@@ -14,6 +14,10 @@ public class Camera {
         this.zoom = zoom;
         return this;
     }
+    public Camera changeZoom(double zoomc) {
+        this.zoom += zoomc;
+        return this;
+    }
     public double getX() {
         return this.x;
     }
@@ -26,6 +30,14 @@ public class Camera {
     }
     public Camera setY(double y) {
         this.y = y;
+        return this;
+    }
+    public Camera changeX(double xc) {
+        this.x += xc;
+        return this;
+    }
+    public Camera changeY(double yc) {
+        this.y += yc;
         return this;
     }
 }
