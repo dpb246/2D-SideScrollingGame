@@ -61,7 +61,7 @@ public class RenderEngine extends JPanel {
                 objs.remove(o);
                 continue;
             }
-            o.draw(g2d, io, currentcam.getX(), currentcam.getY(), currentcam.getZoom());
+            o.draw(g2d, io, currentcam.getPos(), currentcam.getZoom());
         }
     }
 }

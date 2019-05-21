@@ -1,5 +1,7 @@
 package rendering;
 
+import main.Vector2D;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -7,18 +9,13 @@ import java.awt.image.ImageObserver;
 
 public class Renderable {
     protected Image image;
-    protected double x;
-    protected double y;
-    protected double w;
-    protected double h;
+    protected Vector2D pos, size;
     protected double angle;
     protected double scale; //All coordinates world level
     protected boolean visible = true, delete = false;
     private Renderable(double x, double y, double w, double h, double scale, double angle) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
+        this.pos = new Vector2D(x, y);
+        this.size = new Vector2D(w, h);
         this.scale = scale;
         this.angle = angle;
     }
@@ -39,39 +36,29 @@ public class Renderable {
         this.image = im;
     }
     public double getX() {
-        return x;
+        return this.pos.getX();
     }
 
     public Renderable setX(double x) {
-        this.x = x;
+        this.pos.setX(x);
         return this;
     }
 
     public double getY() {
-        return y;
+        return this.pos.getY();
     }
 
     public Renderable setY(double y) {
-        this.y = y;
+        this.pos.setY(y);
         return this;
     }
 
     public double getW() {
-        return w;
-    }
-
-    public Renderable setW(double w) {
-        this.w = w;
-        return this;
+        return this.size.getX();
     }
 
     public double getH() {
-        return h;
-    }
-
-    public Renderable setH(double h) {
-        this.h = h;
-        return this;
+        return this.size.getY();
     }
 
     public double getAngle() {
@@ -113,15 +100,16 @@ public class Renderable {
      *
      * @param g graphics surface to draw to
      * @param io image observer
-     * @param shift_x x transform to turn the global coordinates into camera
-     * @param shift_y y transform to turn the global coordinates into camera
+     * @param camera_shift transform to turn the global coordinates into camera
      * @param camera_scale how zoomed in/out to draw the sprite
      */
-    public void draw(Graphics2D g, ImageObserver io, double shift_x, double shift_y, double camera_scale) {
+    public void draw(Graphics2D g, ImageObserver io, Vector2D camera_shift, double camera_scale) {
         if (!visible) return;
         AffineTransform at = new AffineTransform();
-        at.translate((this.x-shift_x-w/2*scale)*camera_scale, (this.y-shift_y-h/2*scale)*camera_scale); //Translates to center coordinates
-        at.rotate(angle, w/2*scale*camera_scale, h/2*scale*camera_scale); //Rotates angle radians around center
+        Vector2D transformed = pos.copy().subtract(size.scaled(scale/2)).subtract(camera_shift).scaled(camera_scale);//Translates by center coordinates
+        at.translate(transformed.getX(), transformed.getY());
+        Vector2D forRotate = size.copy().scaled(scale*camera_scale/2);
+        at.rotate(angle, forRotate.getX(), forRotate.getY()); //Rotates angle radians around center
         at.scale(scale*camera_scale, scale*camera_scale); //Scales image
         g.drawImage(this.image, at, io);
     }
