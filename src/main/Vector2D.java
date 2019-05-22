@@ -51,4 +51,15 @@ public class Vector2D {
     public Vector2D copy() {
         return new Vector2D(this.x, this.y);
     }
+        public Vector2D print(String title){
+        String s = title;
+        if (title.length() > 0){s+=": ";}
+        s += "X: " + Double.toString(this.x);
+        s += " || Y: " + Double.toString(this.y);
+        System.out.println(s);
+        return this;
+    }
+    public Vector2D print(){
+        return print("");
+    }
 }
