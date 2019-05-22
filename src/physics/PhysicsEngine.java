@@ -1,93 +1,102 @@
 package physics;
 import java.util.ArrayList;
-class vector {
-    public double x;
-    public double y;
-}
-public abstract class PhysicsEngine {
+import main.Vector2D;
+public class PhysicsEngine {
 
-    private final double mass;
     private final double GRAVITY;
 
-    public vector postition = new vector();
-    protected int x, y; // centre of object
-
-    protected double velocityX = 0.0f; // units per frame
-    protected double velocityY = 0.0f;
-
-    private double MAX_VELOCITY_X, MAX_VELOCITY_Y;
-
-    private ArrayList<Force> forces = new ArrayList<>();
-
-    PhysicsEngine(double mass, double gravity, int start_x, int start_y){
-        this.mass = mass;
+    public PhysicsEngine(double gravity){
         this.GRAVITY = gravity;
-        this.x = start_x;
-        this.y = start_y;
     }
 
-    public PhysicsEngine setPosition(int x, int y){
-        this.x = x;
-        this.y = y;
-        return this;
+    private ArrayList<Shape> shapes = new ArrayList<>();
+
+    public Shape add(Shape shape){
+        this.shapes.add(shape);
+        return shape;
     }
 
-    public PhysicsEngine setVelocity(double x, double y){
-        this.velocityX = x;
-        this.velocityY = y;
-        return this;
-    }
+    public void simulate(){
 
-    private void run(){
-        updatePos(); // move
+        for (Shape shape : shapes){
 
-        if (filter()) {
-            checkCollisions(); // check intersections
-        }
+            if (!shape.isStatic()) {
 
-        updatePos(); // adjust
+                updatePos(shape); // move
 
-        draw(); // display
-    }
+                if (filter()) {
+                    checkCollisions(shape); // check intersections
+                }
 
-    public void addForce(Force force){
-        forces.add(force);
-    }
+                //updatePos(shape); // adjust
 
-    private void updatePos(){
+                draw(); // display
 
-        Force gravity = new Force(mass * GRAVITY, velocityY, true, true);
-        forces.add(gravity);
-
-        for (Force force : forces){
-
-            double a = force.getValue() / mass; // F = ma
-            double t = 1 / 60; // time since last frame (1 frame)
-            double v = a * t;
-
-            if (force.isVertical()){
-                velocityY += v;
-            } else {
-                velocityX += v;
             }
 
         }
 
-        forces = new ArrayList<>(); // clear instantaneous forces
+    }
 
-        x += velocityX;
-        y += velocityY;
+    private void updatePos(Shape shape){
+
+        Vector2D gravity = new Vector2D(0, shape.getMass() * GRAVITY);
+        shape.addForce(gravity);
+
+        for (Vector2D force : shape.getForces()){
+
+            Vector2D acceleration = force.scaled(1 / shape.getMass()); // F = ma
+            double t = 1.0 / 60.0; // time since last computation (1 frame)
+
+            Vector2D velocity = acceleration.scale(t);
+            velocity.scale(t).add(shape.getVelocity()); // add onto the velocity
+
+            // Cap velocity
+            Vector2D maxVelocity = shape.getTerminalVelocity();
+            if (maxVelocity.getX() > 0 && Math.abs(velocity.getX()) > maxVelocity.getX()){
+                velocity.setX( maxVelocity.getX() );
+            }
+            if (maxVelocity.getY() > 0 && Math.abs(velocity.getY()) > maxVelocity.getY()){
+                velocity.setY( maxVelocity.getY() );
+            }
+
+            shape.setVelocity(velocity);
+
+        }
+
+        shape.clearForces(); // clear instantaneous forces
+
+        // update position
+        shape.setPosition(shape.getVelocity().add(shape.getPosition())).getVelocity().print("Pos  ");
 
     }
 
-    protected abstract void checkCollisions();
+    private void checkCollisions(Shape shape){
+        if (shape instanceof Box){
 
-    private boolean filter(){
+        } else if (shape instanceof Circle){
+
+        }
+    }
+
+    private boolean boxesIntersect(Box a, Box b){
         return true;
     }
 
-    private void draw(){
+    private boolean circlesIntersect(Circle a, Circle b){
+        return true;
+    }
 
+    private boolean boxCircleIntersect(Box b, Circle c){
+        return true;
+    }
+
+    private boolean filter(){
+        return false;
+    }
+
+
+    private void draw(){
     }
 
 }
