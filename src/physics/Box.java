@@ -3,8 +3,13 @@ package physics;
 public class Box extends Shape {
     private double height;
     private double width;
-    Box(double x, double y, double height, double width, double mass){
-        super(x, y, mass);
+    public Box(double x, double y, double height, double width, double mass, boolean isStatic){
+        super(x, y, mass, isStatic, -1.0, -1.0);
+        this.height = height;
+        this.width = width;
+    }
+    public Box(double x, double y, double height, double width, double mass, boolean isStatic, double maxVelocityX, double maxVelocityY){
+        super(x, y, mass, isStatic, maxVelocityX, maxVelocityY);
         this.height = height;
         this.width = width;
     }
