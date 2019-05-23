@@ -9,7 +9,7 @@ public class Shape {
     private Vector2D terminalVelocity;
     private ArrayList<Vector2D> forces = new ArrayList<>();
     private double mass;
-    private boolean isStatic = false;
+    private boolean isStatic;
     Shape(double x, double y, double mass, boolean isStatic, double maxVelocityX, double maxVelocityY){
         this.position = new Vector2D(x, y);
         this.mass = mass;

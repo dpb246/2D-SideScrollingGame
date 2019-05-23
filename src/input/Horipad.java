@@ -25,6 +25,12 @@ public class Horipad {
             // find the controllers connected
             Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
+            // set to null if no controllers are found
+            if (controllers.length == 0){
+                controller = null;
+                return;
+            }
+
             // use the last controller listed as the input device
             for (Controller c : controllers) {
                 if (c.getType() == Controller.Type.GAMEPAD) {
@@ -129,6 +135,8 @@ public class Horipad {
      * @param displayInputs whether the buttons will be displayed to the console or not
      */
     public void input(boolean displayInputs){
+
+        if (controller == null){return;}
 
         StringBuffer inputs = pollInputs(controller);
 

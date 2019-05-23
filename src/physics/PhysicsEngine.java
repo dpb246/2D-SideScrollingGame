@@ -48,7 +48,7 @@ public class PhysicsEngine {
             Vector2D acceleration = force.scaled(1 / shape.getMass()); // F = ma
             double t = 1.0 / 60.0; // time since last computation (1 frame)
 
-            Vector2D velocity = acceleration.scale(t);
+            Vector2D velocity = acceleration.scale(t); // v = at
             velocity.scale(t).add(shape.getVelocity()); // add onto the velocity
 
             // Cap velocity

@@ -41,9 +41,10 @@ public class Vector2D {
         double mag = getMag();
         return new Vector2D(this.x/mag, this.y/mag);
     }
-    public void scale(double scale) {
+    public Vector2D scale(double scale) {
         this.x *= scale;
         this.y *= scale;
+        return this;
     }
     public Vector2D scaled(double scale) {
         return new Vector2D(this.x*scale, this.y*scale);
@@ -51,11 +52,11 @@ public class Vector2D {
     public Vector2D copy() {
         return new Vector2D(this.x, this.y);
     }
-        public Vector2D print(String title){
+    public Vector2D print(String title){
         String s = title;
         if (title.length() > 0){s+=": ";}
-        s += "X: " + Double.toString(this.x);
-        s += " || Y: " + Double.toString(this.y);
+        s += "X: " + Double.toString(Ults.round(this.x, 3));
+        s += " || Y: " + Double.toString(Ults.round(this.y, 3));
         System.out.println(s);
         return this;
     }

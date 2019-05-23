@@ -1,6 +1,6 @@
 package main;
 
-import input.Keyboard;
+import input.*;
 import rendering.Camera;
 import rendering.RenderEngine;
 import rendering.Renderable;
@@ -38,23 +38,25 @@ public class Camera_Demo extends JFrame implements Runnable{
         screen.add(new Renderable(10, 10, 20, 20, "resources/wall.png"));
         Renderable spin = screen.add(new Renderable(100, 100, 20, 20, 2.0, Math.PI/4, "resources/wall.png"));
         Renderable r = screen.add(new Renderable(100, 100, 20, 20, 1.0, 0, "resources/wall.png"));
+        Horipad h = new Horipad(0.5f, true);
         while(true) {
-            if (k.isDown(KeyEvent.VK_UP)) {
+            h.input(false);
+            if (k.isDown(KeyEvent.VK_UP) || h.isDown("UP")) {
                 screen.getCurrentcam().changeY(1);
             }
-            if (k.isDown(KeyEvent.VK_DOWN)) {
+            if (k.isDown(KeyEvent.VK_DOWN) || h.isDown("DOWN")) {
                 screen.getCurrentcam().changeY(-1);
             }
-            if (k.isDown(KeyEvent.VK_RIGHT)) {
+            if (k.isDown(KeyEvent.VK_RIGHT) || h.isDown("RIGHT")) {
                 screen.getCurrentcam().changeX(-1);
             }
-            if (k.isDown(KeyEvent.VK_LEFT)) {
+            if (k.isDown(KeyEvent.VK_LEFT) || h.isDown("LEFT")) {
                 screen.getCurrentcam().changeX(1);
             }
-            if (k.isDown(KeyEvent.VK_EQUALS)) {
+            if (k.isDown(KeyEvent.VK_EQUALS) || h.isDown("A")) {
                 screen.getCurrentcam().changeZoom(0.01);
             }
-            if (k.isDown(KeyEvent.VK_MINUS)) {
+            if (k.isDown(KeyEvent.VK_MINUS) || h.isDown("B")) {
                 screen.getCurrentcam().changeZoom(-0.01);
             }
             screen.repaint();

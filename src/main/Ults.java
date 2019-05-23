@@ -10,4 +10,8 @@ public class Ults {
             String msg = String.format("Thread interrupted: %s", e.getMessage());
         }
     }
+    public static double round(double num, int digits){
+        double scale = Math.pow(10, digits);
+        return Math.round(scale * num) / scale;
+    }
 }
