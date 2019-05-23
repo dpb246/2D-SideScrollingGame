@@ -29,6 +29,9 @@ public class Vector2D {
         this.y += other.y;
         return this;
     }
+    public Vector2D addNew(Vector2D other) {
+        return new Vector2D(this.x+other.x, this.y+other.y);
+    }
     public Vector2D subtract(Vector2D other) {
         this.x -= other.x;
         this.y -= other.y;

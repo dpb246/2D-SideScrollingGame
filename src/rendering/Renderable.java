@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
+import java.util.Vector;
 
 public class Renderable {
     protected Image image;
@@ -34,6 +35,10 @@ public class Renderable {
     public Renderable(double x, double y, double w, double h, Image im) {
         this(x, y, w, h, 1, 0);
         this.image = im;
+    }
+    public Renderable setPosition(Vector2D pos) {
+        this.pos = pos;
+        return this;
     }
     public double getX() {
         return this.pos.getX();
