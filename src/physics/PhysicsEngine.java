@@ -45,10 +45,9 @@ public class PhysicsEngine {
         double t = 1.0 / 60.0; // time since last computation (1 frame)
 
         for (Vector2D force : shape.getForces()){
-
-            Vector2D acceleration = force.scaled(1 / shape.getMass()); // F = ma
-
-            Vector2D velocity = acceleration.scale(t).addNew(shape.getVelocity()); // v = at + v
+            Vector2D acceleration = force.scaled(1.0 / shape.getMass()); // F = ma
+            //Vector2D velocity = acceleration.scale(t).addNew(shape.getVelocity()); // v = at + v
+            shape.getVelocity().add(acceleration.scaled(t));
             // add onto the velocity
 
             // Cap velocity
@@ -59,14 +58,12 @@ public class PhysicsEngine {
 //            if (maxVelocity.getY() > 0 && Math.abs(velocity.getY()) > maxVelocity.getY()){
 //                velocity.setY( maxVelocity.getY() );
 //            }
-
-            shape.setVelocity(velocity);
-
+            //shape.setVelocity(velocity);
         }
         shape.clearForces(); // clear instantaneous forces
         // update position
-        shape.setPosition(shape.getVelocity().scale(t).add(shape.getPosition()));//.getVelocity().print("Pos  ");
-
+        //shape.setPosition(shape.getVelocity().scale(t).addNew(shape.getPosition())).getVelocity().print("Speed  ");
+        shape.getPosition().add(shape.getVelocity().scaled(t));
     }
 
     private void checkCollisions(Shape shape){

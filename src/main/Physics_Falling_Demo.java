@@ -38,14 +38,11 @@ public class Physics_Falling_Demo extends JFrame implements Runnable{
         PhysicsEngine world = new PhysicsEngine(9.8);
         Box test = new Box(100.0,10.0,20.0,20.0,10.0, false, 10.0, 10.0);
         world.add(test);
-        int simCycles = 600;
-        for (int cycle = 0; cycle < simCycles; cycle++){
+        while(true){
             world.simulate();
-            r.setPosition(test.getPosition());
+            r.setPosition(test.getPosition().scaled(5));
             screen.repaint();
-            Ults.sleep(16);
+            Ults.sleep(1000/60);
         }
-        screen.getCurrentcam().setX(0).setZoom(1);
-        screen.repaint();
     }
 }
