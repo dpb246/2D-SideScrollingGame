@@ -3,17 +3,21 @@ import java.util.ArrayList;
 import main.Vector2D;
 public class PhysicsEngine {
 
-    private final double GRAVITY;
-
-    public PhysicsEngine(double gravity){
-        this.GRAVITY = gravity;
-    }
-
+    private Vector2D gravity;
     private ArrayList<Shape> shapes = new ArrayList<>();
 
-    public Shape add(Shape shape){
+    public PhysicsEngine(Vector2D gravity){
+        this.gravity = gravity.copy();
+    }
+
+    public PhysicsEngine setGravity(Vector2D gravity){
+        this.gravity = gravity.copy();
+        return this;
+    }
+
+    public PhysicsEngine add(Shape shape){
         this.shapes.add(shape);
-        return shape;
+        return this;
     }
 
     public void simulate(){
@@ -40,30 +44,25 @@ public class PhysicsEngine {
 
     private void updatePos(Shape shape){
 
-        Vector2D gravity = new Vector2D(0, shape.getMass() * GRAVITY);
-        shape.addForce(gravity);
+        shape.addForce(gravity.scaled(shape.getMass()));
         double t = 1.0 / 60.0; // time since last computation (1 frame)
 
         for (Vector2D force : shape.getForces()){
-            Vector2D acceleration = force.scaled(1.0 / shape.getMass()); // F = ma
-            //Vector2D velocity = acceleration.scale(t).addNew(shape.getVelocity()); // v = at + v
-            shape.getVelocity().add(acceleration.scaled(t));
-            // add onto the velocity
 
-            // Cap velocity
-//            Vector2D maxVelocity = shape.getTerminalVelocity();
-//            if (maxVelocity.getX() > 0 && Math.abs(velocity.getX()) > maxVelocity.getX()){
-//                velocity.setX( maxVelocity.getX() );
-//            }
-//            if (maxVelocity.getY() > 0 && Math.abs(velocity.getY()) > maxVelocity.getY()){
-//                velocity.setY( maxVelocity.getY() );
-//            }
-            //shape.setVelocity(velocity);
+            Vector2D acceleration = force.scaled(1.0 / shape.getMass()); // F = ma
+            shape.getVelocity().add(acceleration.scaled(t)).print(); // v = at + v
+
+            // Limit velocity
+            Vector2D maxVelocity = shape.getTerminalVelocity();
+            if (maxVelocity.getX() > 0 && shape.getVelocity().getMag() > maxVelocity.getMag()){
+                shape.setVelocity( shape.getVelocity().unit().scaled( maxVelocity.getMag()) );
+            }
+
         }
+
         shape.clearForces(); // clear instantaneous forces
-        // update position
-        //shape.setPosition(shape.getVelocity().scale(t).addNew(shape.getPosition())).getVelocity().print("Speed  ");
-        shape.getPosition().add(shape.getVelocity().scaled(t));
+        shape.getPosition().add(shape.getVelocity().scaled(t)); // update position
+
     }
 
     private void checkCollisions(Shape shape){

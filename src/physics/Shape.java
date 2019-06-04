@@ -39,6 +39,11 @@ public class Shape {
     public Vector2D getTerminalVelocity(){
         return this.terminalVelocity;
     }
+    public Shape setTerminalVelocity(Vector2D velocity){
+        this.terminalVelocity.setX(velocity.getX());
+        this.terminalVelocity.setY(velocity.getY());
+        return this;
+    }
     public boolean isStatic(){return this.isStatic;}
     public Shape addForce(Vector2D force){
         forces.add(force);

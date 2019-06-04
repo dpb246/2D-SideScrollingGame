@@ -38,7 +38,7 @@ public class Vector2D {
         return this;
     }
     public double getMag() {
-        return this.x*this.x + this.y*this.y;
+        return Math.sqrt(this.x*this.x + this.y*this.y);
     }
     public Vector2D unit() {
         double mag = getMag();
