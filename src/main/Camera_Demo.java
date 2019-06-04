@@ -35,7 +35,7 @@ public class Camera_Demo extends JFrame implements Runnable{
     public void run() {
         RenderEngine screen =  RenderEngine.getInstance();
         Keyboard k = Keyboard.getInstance();
-        screen.add(new Renderable(10, 10, 20, 20, "resources/wall.png"));
+        screen.add(new Renderable(20, 20, 20, 20, "resources/wall.png"));
         Renderable spin = screen.add(new Renderable(100, 100, 20, 20, 2.0, Math.PI/4, "resources/wall.png"));
         Renderable r = screen.add(new Renderable(100, 100, 20, 20, 1.0, 0, "resources/wall.png"));
         Horipad h = new Horipad(0.5f, true);
