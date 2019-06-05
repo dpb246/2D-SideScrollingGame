@@ -1,5 +1,7 @@
 package main;
 
+import rendering.RenderEngine;
+
 import javax.swing.*;
 
 public class Ults {
@@ -13,5 +15,8 @@ public class Ults {
     public static double round(double num, int digits){
         double scale = Math.pow(10, digits);
         return Math.round(scale * num) / scale;
+    }
+    public static double convertY(double cury) {
+        return (cury - RenderEngine.Wanted_HEIGHT)*-1;
     }
 }

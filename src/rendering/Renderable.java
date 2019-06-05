@@ -1,12 +1,12 @@
 package rendering;
 
+import main.Ults;
 import main.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
-import java.util.Vector;
 
 public class Renderable {
     protected Image image;
@@ -113,8 +113,8 @@ public class Renderable {
         AffineTransform at = new AffineTransform();
         Vector2D transformed = pos.copy().subtract(size.scaled(scale/2)).subtract(camera_shift).scaled(camera_scale);//Translates by center coordinates
         at.translate(transformed.getX(), transformed.getY());
-        Vector2D forRotate = size.copy().scaled(scale*camera_scale/2);
-        at.rotate(angle, forRotate.getX(), forRotate.getY()); //Rotates angle radians around center
+        Vector2D forRotate = size.scaled(scale*camera_scale/2);
+        at.rotate(angle+Math.PI, forRotate.getX(), forRotate.getY()); //Rotates angle radians around center and need to unrotate
         at.scale(scale*camera_scale, scale*camera_scale); //Scales image
         g.drawImage(this.image, at, io);
     }

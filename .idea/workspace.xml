@@ -13,7 +13,6 @@
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,8 +48,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Circle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/physics/Circle.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rendering/Level_Tile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
@@ -68,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vector2D.java" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Vector2D.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
@@ -107,14 +106,14 @@
       <file leaf-file-name="Ults.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Ults.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="493">
+              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Physics_Demo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Physics_Demo.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rendering/RenderEngine.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
@@ -122,8 +121,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Camera_Demo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Camera_Demo.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/physics/PhysicsEngine.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
               <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
@@ -190,29 +189,31 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="project-AJG-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="project-AJG-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="project-AJG-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="project-AJG-v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG-v2" type="462c0819:PsiDirectoryNode" />
+              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="physics" type="462c0819:PsiDirectoryNode" />
+              <item name="rendering" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project-AJG-v2" type="b2602c69:ProjectViewProjectNode" />
@@ -263,21 +264,33 @@
     <configuration name="Physics Falling Demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Physics_Falling_Demo" />
       <module name="project-AJG" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="camera demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Camera_Demo" />
       <module name="project-AJG" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="physics demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Physics_Demo" />
       <module name="project-AJG" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="rendering demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Rendering_Demo" />
       <module name="project-AJG" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Application.camera demo" />
@@ -300,7 +313,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -333,6 +347,7 @@
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5597686" visible="true" weight="0.2715054" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -348,7 +363,9 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="right" id="Maven" order="7" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -356,8 +373,15 @@
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.53020567" weight="0.3252688" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info id="Favorites" order="6" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -482,11 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Camera_Demo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="493">
+          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
         </state>
       </provider>
     </entry>

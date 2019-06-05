@@ -7,8 +7,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RenderEngine extends JPanel {
     private static RenderEngine instance = null;
-    private final static  int Wanted_WIDTH = 1024;
-    private final static  int Wanted_HEIGHT = 576;
+    public final static  int Wanted_WIDTH = 1024;
+    public final static  int Wanted_HEIGHT = 576;
     private static CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
     private static Camera currentcam = null;
 
@@ -56,6 +56,8 @@ public class RenderEngine extends JPanel {
     public void drawAll(Graphics g, ImageObserver io) {
         if (currentcam == null) throw new RuntimeException("Did not set current camera!");
         Graphics2D g2d = (Graphics2D) g;
+        g2d.translate(0.0, Wanted_HEIGHT);
+        g2d.scale(1.0, -1.0);
         for (Renderable o : objs) {
             if(o.shouldDelete()) {
                 objs.remove(o);
