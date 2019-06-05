@@ -13,4 +13,16 @@ public class Circle extends Shape {
     public double getRadius(){
         return this.radius;
     }
+    public double getMaxX(){
+        return getPosition().getX() + radius;
+    }
+    public double getMinX(){
+        return getPosition().getX() - radius;
+    }
+    public double getMaxY(){
+        return getPosition().getY() + radius;
+    }
+    public double getMinY(){
+        return getPosition().getY() - radius;
+    }
 }

@@ -32,8 +32,6 @@ public class PhysicsEngine {
                     checkCollisions(shape); // check intersections
                 }
 
-                //updatePos(shape); // adjust
-
                 draw(); // display
 
             }
@@ -50,7 +48,7 @@ public class PhysicsEngine {
         for (Vector2D force : shape.getForces()){
 
             Vector2D acceleration = force.scaled(1.0 / shape.getMass()); // F = ma
-            shape.getVelocity().add(acceleration.scaled(t)).print(); // v = at + v
+            shape.getVelocity().add(acceleration.scaled(t)); // v = at + v
 
             // Limit velocity
             Vector2D maxVelocity = shape.getTerminalVelocity();
@@ -61,20 +59,60 @@ public class PhysicsEngine {
         }
 
         shape.clearForces(); // clear instantaneous forces
-        shape.getPosition().add(shape.getVelocity().scaled(t)); // update position
+        shape.getPosition().add(shape.getVelocity().scaled(t));//.print(); // update position
 
     }
 
-    private void checkCollisions(Shape shape){
-        if (shape instanceof Box){
+    private void checkCollisions(Shape self){
+        if (self instanceof Box){
 
-        } else if (shape instanceof Circle){
+            for (Shape otherObj : shapes){
 
+                if (otherObj != self){
+
+                    if (otherObj instanceof Box){
+
+                        while (boxesIntersect((Box)self, (Box)otherObj)) {
+                            self.getPosition().add(self.getVelocity().unit().scaled(-1)); // move backwards. This is not a good way to do this
+                        }
+                        self.addForce(gravity.scaled(-1 * self.getMass())); // cancel gravity
+
+                    } else if (otherObj instanceof Circle){
+
+                        while (boxCircleIntersect((Box)self, (Circle)otherObj)) {
+                            self.getPosition().add(self.getVelocity().unit().scaled(-1)); // move backwards. This is not a good way to do this
+                        }
+                        self.addForce(gravity.scaled(-1 * self.getMass())); // cancel gravity
+                    }
+
+                }
+
+            }
+
+
+
+        } else if (self instanceof Circle){
+            for (Shape otherObj : shapes) {
+                if (otherObj != self){
+                    return;
+                }
+            }
         }
     }
 
     private boolean boxesIntersect(Box a, Box b){
-        return true;
+
+        double dx = b.getMinX() - a.getMaxX();
+        double dy = b.getMinY() - a.getMaxY();
+
+        if (dx > 0.0 || dy > 0.0)
+            return false;
+
+        dx = a.getMinX() - b.getMaxX();
+        dy = a.getMinY() - b.getMaxY();
+
+        return !(dx > 0.0 || dy > 0.0);
+
     }
 
     private boolean circlesIntersect(Circle a, Circle b){
@@ -86,7 +124,7 @@ public class PhysicsEngine {
     }
 
     private boolean filter(){
-        return false;
+        return true;
     }
 
 

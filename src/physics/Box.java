@@ -19,4 +19,16 @@ public class Box extends Shape {
     public double getWidth(){
         return this.width;
     }
+    public double getMinX(){
+        return getPosition().getX() - width / 2;
+    }
+    public double getMaxX(){
+        return getPosition().getX() + width / 2;
+    }
+    public double getMinY(){
+        return getPosition().getY() - height / 2;
+    }
+    public double getMaxY(){
+        return getPosition().getY() + height / 2;
+    }
 }

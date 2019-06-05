@@ -35,14 +35,17 @@ public class Physics_Falling_Demo extends JFrame implements Runnable{
     public void run() {
         RenderEngine screen = RenderEngine.getInstance();
         Renderable r = screen.add(new Renderable(100, 10, 20, 20, 1.0, 0, "resources/wall.png"));
+        Renderable r0 = screen.add(new Renderable(500, 500, 20, 20, 10.0, 0, "resources/wall.png"));
+
         PhysicsEngine world = new PhysicsEngine(new Vector2D(0,9.8));
-        Box test = new Box(100.0,20.0,20.0,20.0, false, 10.0, 15.0, 15.0);
-        Box floor = new Box(100.0, 20.0, 20.0, 200.0, true);
-        world.add(test).add(floor);
-        Renderable r2 = screen.add(new Renderable(100, 20, 200, 20, 1.0, 0, "resources/wall.png"));
+        Box FallingBox = new Box(100.0,20.0,20.0,20.0, false, 10.0, 15.0, 15.0);
+        Box floor = new Box(50, 500, 200.0, 200.0, true);
+        world.add(FallingBox).add(floor);
+
+
         for (int i=0; i<1000; i++){
             world.simulate();
-            r.setPosition(test.getPosition().scaled(5));
+            r.setPosition(FallingBox.getPosition().scaled(5));
             screen.repaint();
             Ults.sleep(1000/60);
         }
