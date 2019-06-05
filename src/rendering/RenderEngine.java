@@ -1,19 +1,16 @@
 package rendering;
 
-import main.Level;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RenderEngine extends JPanel {
     private static RenderEngine instance = null;
-    public final static  int Wanted_WIDTH = 1024;
-    public final static  int Wanted_HEIGHT = 576;
+    public final static  int Wanted_WIDTH = 1366;
+    public final static  int Wanted_HEIGHT = 768;
     private static CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
-    private static Level currentLevel = null;
+    private static Level_Tile currentLevel = null;
     private static Camera currentcam = null;
 
     private RenderEngine() {
@@ -39,7 +36,7 @@ public class RenderEngine extends JPanel {
         currentcam = newcam;
         return getInstance(); //cause why not
     }
-    public RenderEngine setLevel(Level newLevel) {
+    public RenderEngine setLevel(Level_Tile newLevel) {
         currentLevel = newLevel;
         return getInstance(); //cause why not
     }

@@ -1,4 +1,4 @@
-package main;
+package rendering;
 
 import rendering.Camera;
 import rendering.Renderable;

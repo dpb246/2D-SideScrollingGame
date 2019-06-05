@@ -3,32 +3,56 @@ import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Level_Tile {
     private CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
     private double x, y;
+    public final static int TILE_SIZE = 80;
     public Level_Tile(double x, double y) {
         objs = new CopyOnWriteArrayList<>();
         this.x = x;
         this.y = y;
     }
-    public boolean load_from_file(String file_path) {
+    public Level_Tile load_from_file(String file_path) {
         try {
-            Scanner sc = new Scanner(new File(file_path));
-            while (sc.hasNext()) {
-                int count = 0;
-                double[] buffer = new double[6];
-                while (sc.hasNextDouble()) {
-                    buffer[count] = sc.nextDouble();
-                    count++;
+            ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
+            Collections.reverse(stream);
+            double curx = 0;
+            double cury = 0;
+            for (String line : stream) {
+                for (char c : line.toCharArray()) {
+                    switch (c) {
+                        case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/Other Sprites/spikes.png"));
+                            break;
+                        case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/wood_floor_large.png"));
+                            break;
+                        case '*': //air
+                            //do NOTHING LETS GO PARTY TIME
+                            break;
+                        case 'G': //goal
+                            // TODO: I mean did you really want to be able to end the level?
+                            break;
+                    }
+                    curx += TILE_SIZE;
                 }
-                
+                curx = 0;
+                cury += TILE_SIZE;
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
+        return this;
     }
     public Renderable add(Renderable obj) {
         objs.add(obj);
