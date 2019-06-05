@@ -1,8 +1,11 @@
 package rendering;
 
+import main.Level;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RenderEngine extends JPanel {
@@ -10,6 +13,7 @@ public class RenderEngine extends JPanel {
     public final static  int Wanted_WIDTH = 1024;
     public final static  int Wanted_HEIGHT = 576;
     private static CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
+    private static Level currentLevel = null;
     private static Camera currentcam = null;
 
     private RenderEngine() {
@@ -35,6 +39,10 @@ public class RenderEngine extends JPanel {
         currentcam = newcam;
         return getInstance(); //cause why not
     }
+    public RenderEngine setLevel(Level newLevel) {
+        currentLevel = newLevel;
+        return getInstance(); //cause why not
+    }
     public Camera getCurrentcam() {
         return currentcam;
     }
@@ -58,6 +66,11 @@ public class RenderEngine extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.translate(0.0, Wanted_HEIGHT);
         g2d.scale(1.0, -1.0);
+
+        if (currentLevel != null) {
+            currentLevel.draw(g2d, io, currentcam);
+        }
+
         for (Renderable o : objs) {
             if(o.shouldDelete()) {
                 objs.remove(o);
