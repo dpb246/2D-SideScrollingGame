@@ -2,3 +2,5 @@
 *.xml
 *.class
 *.xml
+*.xml
+.idea\

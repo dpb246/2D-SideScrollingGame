@@ -1,17 +1,58 @@
 package rendering;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
-class LevelPointers {
-    public Level_Tile N, S, E, W, NE, NW, SE, SW;
-}
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Level_Tile {
     private CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
-    private double x, y, w, h;
-    private LevelPointers adjacent;
-    public Level_Tile(double x, double y, double w, double h) {
+    private double x, y;
+    public final static int TILE_SIZE = 80;
+    public Level_Tile(double x, double y) {
         objs = new CopyOnWriteArrayList<>();
         this.x = x;
         this.y = y;
-        adjacent = new LevelPointers();
+    }
+    public Level_Tile load_from_file(String file_path) {
+        try {
+            ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
+            Collections.reverse(stream);
+            double curx = 0;
+            double cury = 0;
+            for (String line : stream) {
+                for (char c : line.toCharArray()) {
+                    switch (c) {
+                        case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/Other Sprites/spikes.png"));
+                            break;
+                        case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/wood_floor_large.png"));
+                            break;
+                        case '*': //air
+                            //do NOTHING LETS GO PARTY TIME
+                            break;
+                        case 'G': //goal
+                            // TODO: I mean did you really want to be able to end the level?
+                            break;
+                    }
+                    curx += TILE_SIZE;
+                }
+                curx = 0;
+                cury += TILE_SIZE;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
     public Renderable add(Renderable obj) {
         objs.add(obj);
@@ -19,5 +60,15 @@ public class Level_Tile {
     }
     public CopyOnWriteArrayList getAll() {
         return objs;
+    }
+
+    public void draw(Graphics2D g2d, ImageObserver io, Camera currentCam) {
+        for (Renderable o : objs) {
+            if(o.shouldDelete()) {
+                objs.remove(o);
+                continue;
+            }
+            o.draw(g2d, io, currentCam.getPos(), currentCam.getZoom());
+        }
     }
 }
