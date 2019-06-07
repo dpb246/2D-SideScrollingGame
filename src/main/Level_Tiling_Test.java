@@ -44,10 +44,10 @@ public class Level_Tiling_Test extends JFrame implements Runnable{
         while (true) {
             screen.repaint();
             if (k.isDown(KeyEvent.VK_RIGHT)) {
-                screen.getCurrentcam().changeX(2);
+                screen.getCurrentcam().changeX(5);
             }
             if (k.isDown(KeyEvent.VK_LEFT)) {
-                screen.getCurrentcam().changeX(-2);
+                screen.getCurrentcam().changeX(-5);
             }
             if (k.justPressed(KeyEvent.VK_N)) {
                 t.setMessage("LEVEL 2").setColor(Color.RED);

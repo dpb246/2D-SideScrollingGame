@@ -1,6 +1,9 @@
 package rendering;
+import main.Vector2D;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,11 +18,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Level_Tile {
-    private CopyOnWriteArrayList<Renderable> objs; //ya ya its slow
+    private ArrayList<ArrayList<Image>> images; //ya ya its slow
     private double x, y;
     public final static int TILE_SIZE = 80;
     public Level_Tile(double x, double y) {
-        objs = new CopyOnWriteArrayList<>();
+        images = new ArrayList<>();
         this.x = x;
         this.y = y;
     }
@@ -29,53 +32,55 @@ public class Level_Tile {
         try {
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
             Collections.reverse(stream);
-            double curx = 0;
-            double cury = 0;
+            int cury = 0;
             for (String line : stream) {
                 for (char c : line.toCharArray()) {
+                    images.add(new ArrayList<>());
                     switch (c) {
                         case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
-                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, spike));
+                            images.get(cury).add(spike);
                             break;
                         case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
-                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, floor));
+                            images.get(cury).add(floor);
                             break;
                         case '*': //air
                             //do NOTHING LETS GO PARTY TIME
+                            images.get(cury).add(null);
                             break;
                         case 'G': //goal
                             // TODO: I mean did you really want to be able to end the level?
-                            break;
-                        case 'T': //tree resources/Pirate Adventure Textures/Other Sprites/palm_tree_flipped.png
-                            add(new Renderable(x + curx + 320/2, y + cury + 360/2, 320, 360, "resources/Pirate Adventure Textures/Other Sprites/palm_tree.png"));
-                            curx += 360 - TILE_SIZE;
+                            images.get(cury).add(null);
                             break;
                     }
-                    curx += TILE_SIZE;
                 }
-                curx = 0;
-                cury += TILE_SIZE;
+                cury += 1;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return this;
     }
-    public Renderable add(Renderable obj) {
-        objs.add(obj);
-        return obj;  //Return obj passed to make nicer usage
-    }
-    public CopyOnWriteArrayList getAll() {
-        return objs;
-    }
 
-    public void draw(Graphics2D g2d, ImageObserver io, Camera currentCam) {
-        for (Renderable o : objs) {
-            if(o.shouldDelete()) {
-                objs.remove(o);
-                continue;
+    public void draw(Graphics2D g2d, ImageObserver io, Vector2D camera_shift, double camera_scale) {
+        double curx = 0;
+        double cury = 0;
+        for (int j = 0; j < images.size(); j++) {
+            ArrayList<Image> row = images.get(j);
+            int k;
+            for (k = 0; k < row.size() && (x+curx-camera_shift.getX())*camera_scale < RenderEngine.Wanted_WIDTH; k++) {
+                Image i = row.get(k);
+                if (i != null) {
+                    AffineTransform at = new AffineTransform();
+                    at.translate((x + curx -camera_shift.getX())*camera_scale, (y + cury -camera_shift.getY())*camera_scale);
+                    at.rotate(Math.PI, TILE_SIZE*camera_scale/2, TILE_SIZE*camera_scale/2); //Rotates angle radians around center and need to unrotate
+                    at.scale(-camera_scale, camera_scale); //Scales image
+                    at.translate(-TILE_SIZE, 0);
+                    g2d.drawImage(i, at, io);
+                }
+                curx += TILE_SIZE;
             }
-            o.draw(g2d, io, currentCam.getPos(), currentCam.getZoom());
+            curx = 0;
+            cury += TILE_SIZE;
         }
     }
 }

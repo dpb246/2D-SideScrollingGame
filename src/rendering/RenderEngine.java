@@ -75,7 +75,7 @@ public class RenderEngine extends JPanel {
         g2d.scale(1.0, -1.0);
 
         if (currentLevel != null) {
-            currentLevel.draw(g2d, io, currentcam);
+            currentLevel.draw(g2d, io, currentcam.getPos(), currentcam.getZoom());
         }
 
         for (Renderable o : objs) {

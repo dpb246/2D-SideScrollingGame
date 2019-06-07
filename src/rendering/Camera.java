@@ -9,6 +9,11 @@ public class Camera {
         position = new Vector2D(x, y);
         this.zoom = zoom;
     }
+    public Camera reset() {
+        this.zoom = 1.0;
+        this.position.setX(0).setY(0);
+        return this;
+    }
     public double getZoom() {
         return this.zoom;
     }
