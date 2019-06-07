@@ -44,18 +44,20 @@ public class Level_Tiling_Test extends JFrame implements Runnable{
         while (true) {
             screen.repaint();
             if (k.isDown(KeyEvent.VK_RIGHT)) {
-                screen.getCurrentcam().changeX(5);
+                screen.getCurrentcam().changeX(2);
             }
             if (k.isDown(KeyEvent.VK_LEFT)) {
-                screen.getCurrentcam().changeX(-5);
+                screen.getCurrentcam().changeX(-2);
             }
             if (k.justPressed(KeyEvent.VK_N)) {
                 t.setMessage("LEVEL 2").setColor(Color.RED);
                 screen.setLevel(l2);
+                screen.getCurrentcam().reset().setZoom(0.5);
             }
             if (k.justPressed(KeyEvent.VK_R)) {
                 t.setMessage("LEVEL 1").setColor(Color.YELLOW);
                 screen.setLevel(l);
+                screen.getCurrentcam().reset().setZoom(0.5);
             }
 
             long sleep = Math.max(1, 16-(System.currentTimeMillis()-start_time));
