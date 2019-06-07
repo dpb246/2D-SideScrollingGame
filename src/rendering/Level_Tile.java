@@ -43,6 +43,10 @@ public class Level_Tile {
                         case 'G': //goal
                             // TODO: I mean did you really want to be able to end the level?
                             break;
+                        case 'T': //tree resources/Pirate Adventure Textures/Other Sprites/palm_tree_flipped.png
+                            add(new Renderable(x + curx + 320/2, y + cury + 360/2, 320, 360, "resources/Pirate Adventure Textures/Other Sprites/palm_tree.png"));
+                            curx += 360 - TILE_SIZE;
+                            break;
                     }
                     curx += TILE_SIZE;
                 }

@@ -115,7 +115,8 @@ public class Renderable {
         at.translate(transformed.getX(), transformed.getY());
         Vector2D forRotate = size.scaled(scale*camera_scale/2);
         at.rotate(angle+Math.PI, forRotate.getX(), forRotate.getY()); //Rotates angle radians around center and need to unrotate
-        at.scale(scale*camera_scale, scale*camera_scale); //Scales image
+        at.scale(-scale*camera_scale, scale*camera_scale); //Scales image
+        at.translate(-size.getX(), 0);
         g.drawImage(this.image, at, io);
     }
     /**
