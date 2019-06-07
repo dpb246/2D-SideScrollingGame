@@ -50,11 +50,11 @@ public class Level_Tiling_Test extends JFrame implements Runnable{
                 screen.getCurrentcam().changeX(-2);
             }
             if (k.justPressed(KeyEvent.VK_N)) {
-                t.message = "LEVEL 2";
+                t.setMessage("LEVEL 2").setColor(Color.RED);
                 screen.setLevel(l2);
             }
             if (k.justPressed(KeyEvent.VK_R)) {
-                t.message = "LEVEL 1";
+                t.setMessage("LEVEL 1").setColor(Color.YELLOW);
                 screen.setLevel(l);
             }
 

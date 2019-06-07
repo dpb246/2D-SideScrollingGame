@@ -1,4 +1,5 @@
 package rendering;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -23,6 +24,8 @@ public class Level_Tile {
         this.y = y;
     }
     public Level_Tile load_from_file(String file_path) {
+        Image spike = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/spikes.png")).getImage();
+        Image floor = (new ImageIcon("resources/Pirate Adventure Textures/wood_floor_large.png")).getImage();
         try {
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
             Collections.reverse(stream);
@@ -32,10 +35,10 @@ public class Level_Tile {
                 for (char c : line.toCharArray()) {
                     switch (c) {
                         case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
-                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/Other Sprites/spikes.png"));
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, spike));
                             break;
                         case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
-                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, "resources/Pirate Adventure Textures/wood_floor_large.png"));
+                            add(new Renderable(x + curx + TILE_SIZE/2, y + cury + TILE_SIZE/2, TILE_SIZE, TILE_SIZE, floor));
                             break;
                         case '*': //air
                             //do NOTHING LETS GO PARTY TIME
