@@ -10,12 +10,14 @@ public class Shape {
     private ArrayList<Vector2D> forces = new ArrayList<>();
     private double mass;
     private boolean isStatic;
+    private boolean isInAir;
     Shape(double x, double y, double mass, boolean isStatic, double maxVelocityX, double maxVelocityY){
         this.position = new Vector2D(x, y);
         this.mass = mass;
         this.isStatic = isStatic;
         this.terminalVelocity = new Vector2D(maxVelocityX, maxVelocityY);
         velocity = new Vector2D(0.0, 0.0);
+        isInAir = true;
     }
     public Vector2D getPosition(){
         return this.position;
@@ -54,6 +56,13 @@ public class Shape {
     }
     public Shape clearForces(){
         forces = new ArrayList<>();
+        return this;
+    }
+    public boolean isInAir(){
+        return !isStatic && isInAir;
+    }
+    public Shape setAirState(boolean isInAir){
+        this.isInAir = isInAir;
         return this;
     }
 }

@@ -42,7 +42,10 @@ public class PhysicsEngine {
 
     private void updatePos(Shape shape){
 
-        shape.addForce(gravity.scaled(shape.getMass()));
+        if (shape.isInAir()){
+            System.out.println("True");
+            shape.addForce(gravity.scaled(shape.getMass()));
+        }
         double t = 1.0 / 60.0; // time since last computation (1 frame)
 
         for (Vector2D force : shape.getForces()){
@@ -72,10 +75,18 @@ public class PhysicsEngine {
 
                     if (otherObj instanceof Box){
 
-                        while (boxesIntersect((Box)self, (Box)otherObj)) {
-                            self.getPosition().add(self.getVelocity().unit().scaled(-1)); // move backwards. This is not a good way to do this
+                        if (boxesIntersect((Box)self, (Box)otherObj)) {
+                            Vector2D reverse = self.getVelocity().unit().scaled(-1);
+                            self.getVelocity().scale(0);
+                            do {
+                                //System.out.println("Collided");
+                                self.getPosition().add(reverse); // move backwards. This is not a good way to do this
+                            } while (boxesIntersect((Box) self, (Box) otherObj));
+                            //self.addForce(gravity.scaled(-1 * self.getMass())); // cancel gravity
+                            self.setAirState(false);
+                        //} else {
+                            //self.setAirState(true);
                         }
-                        self.addForce(gravity.scaled(-1 * self.getMass())); // cancel gravity
 
                     } else if (otherObj instanceof Circle){
 
