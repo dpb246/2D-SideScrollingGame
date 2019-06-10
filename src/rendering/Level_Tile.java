@@ -66,8 +66,8 @@ public class Level_Tile {
         double cury = 0;
         for (int j = 0; j < images.size(); j++) {
             ArrayList<Image> row = images.get(j);
-            int k;
-            for (k = (int) Math.max(0, Math.floor((camera_shift.getX()-x)/(TILE_SIZE))); k < row.size() && (x+curx-camera_shift.getX())*camera_scale < RenderEngine.Wanted_WIDTH+TILE_SIZE*2; k++) {
+            int k = (int) Math.max(0, Math.floor((camera_shift.getX()-x)/(TILE_SIZE)));
+            for (k = 0; k < row.size() && (x+curx-camera_shift.getX())*camera_scale < RenderEngine.Wanted_WIDTH+TILE_SIZE*2; k++) {
                 Image i = row.get(k);
                 if (i != null) {
                     AffineTransform at = new AffineTransform();
