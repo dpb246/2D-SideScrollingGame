@@ -1,7 +1,9 @@
-package main;
+package Demoes;
 
 import input.Horipad;
 import input.Keyboard;
+import main.Ults;
+import main.Vector2D;
 import physics.Box;
 import physics.PhysicsEngine;
 import rendering.Camera;

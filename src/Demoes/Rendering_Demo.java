@@ -1,6 +1,7 @@
-package main;
+package Demoes;
 
 import input.Keyboard;
+import main.Ults;
 import rendering.Camera;
 import rendering.RenderEngine;
 import rendering.Renderable;

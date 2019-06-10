@@ -1,6 +1,7 @@
-package main;
+package Demoes;
 
 import input.*;
+import main.Ults;
 import rendering.Camera;
 import rendering.RenderEngine;
 import rendering.Renderable;
@@ -8,7 +9,6 @@ import rendering.Renderable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 public class Camera_Demo extends JFrame implements Runnable{
     public Camera_Demo() {

@@ -201,7 +201,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559866626913" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560174628835" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -233,21 +233,21 @@
   </component>
   <component name="RunManager" selected="Application.Tile test">
     <configuration name="Physics Falling Demo" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="main.Physics_Falling_Demo" />
-      <module name="project-AJG" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.Physics_Falling_Demo" />
+      <module name="project-AJG1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Tile test" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="main.Level_Tiling_Test" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.Level_Tiling_Test" />
       <module name="project-AJG1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="camera demo" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="main.Camera_Demo" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.Camera_Demo" />
       <module name="project-AJG1" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
       <method v="2">
@@ -255,15 +255,15 @@
       </method>
     </configuration>
     <configuration name="physics demo" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="main.Physics_Demo" />
-      <module name="project-AJG" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.Physics_Demo" />
+      <module name="project-AJG1" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="rendering demo" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="main.Rendering_Demo" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.Rendering_Demo" />
       <module name="project-AJG1" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;.\resources\jinput&quot;" />
       <method v="2">
