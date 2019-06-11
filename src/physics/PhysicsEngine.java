@@ -42,7 +42,7 @@ public class PhysicsEngine {
 
     private void updatePos(Shape shape){
 
-        if (shape.isInAir()){
+        if (true){
             System.out.println("True");
             shape.addForce(gravity.scaled(shape.getMass()));
         }
@@ -77,13 +77,13 @@ public class PhysicsEngine {
 
                         if (boxesIntersect((Box)self, (Box)otherObj)) {
                             Vector2D reverse = self.getVelocity().unit().scaled(-1);
-                            self.getVelocity().scale(0);
+                            self.setVelocity(new Vector2D(0,0));
                             do {
                                 //System.out.println("Collided");
                                 self.getPosition().add(reverse); // move backwards. This is not a good way to do this
                             } while (boxesIntersect((Box) self, (Box) otherObj));
                             //self.addForce(gravity.scaled(-1 * self.getMass())); // cancel gravity
-                            self.setAirState(false);
+                            //self.setAirState(false);
                         //} else {
                             //self.setAirState(true);
                         }

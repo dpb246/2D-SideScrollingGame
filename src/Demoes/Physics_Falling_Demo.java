@@ -55,7 +55,7 @@ public class Physics_Falling_Demo extends JFrame implements Runnable{
         Keyboard k = Keyboard.getInstance();
         Horipad h = new Horipad(0.5f, false);
 
-        for (int i=0; i<1000; i++){
+        while (true){
             world.simulate();
             r.setPosition(FallingBox.getPosition());
             r0.setPosition(floor.getPosition());
@@ -78,11 +78,11 @@ public class Physics_Falling_Demo extends JFrame implements Runnable{
             //screen.getCurrentcam().changeY(-1);
         }
         if (k.isDown(KeyEvent.VK_RIGHT) || h.isDown("RIGHT")) {
-            box.addForce(new Vector2D(100,0));
+            box.addForce(new Vector2D(10000,0));
             //screen.getCurrentcam().changeX(-1);
         }
         if (k.isDown(KeyEvent.VK_LEFT) || h.isDown("LEFT")) {
-            box.addForce(new Vector2D(-100,0));
+            box.addForce(new Vector2D(-10000,0));
             //screen.getCurrentcam().changeX(1);
         }
         if (k.isDown(KeyEvent.VK_EQUALS) || h.isDown("A")) {
