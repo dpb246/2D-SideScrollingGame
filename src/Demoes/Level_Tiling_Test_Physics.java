@@ -10,6 +10,7 @@ import rendering.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.security.Key;
 
 public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
     public Level_Tiling_Test_Physics() {
@@ -45,7 +46,7 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
 
         Renderable r = screen.add(new Renderable(50, 500, 20, 20, 1.0, 0, "resources/wall.png"));
         AABB FallingBox = world.add(new AABB(new Vector2D(50, 500), 20, 20, 10));
-        FallingBox.gravity = new Vector2D(0, -98);
+        FallingBox.gravity = new Vector2D(0, -98*5);
 
         screen.setLevel(l);
         screen.getCurrentcam().setZoom(0.5);
@@ -53,13 +54,13 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
         long start_time = System.currentTimeMillis();
         while (true) {
             screen.repaint();
-            if (k.justPressed(KeyEvent.VK_RIGHT) || k.justReleased(KeyEvent.VK_LEFT)) {
-                FallingBox.velocity.add(new Vector2D(200, 0));
-            } else if (k.justReleased(KeyEvent.VK_RIGHT) || k.justPressed(KeyEvent.VK_LEFT)) {
-                FallingBox.velocity.add(new Vector2D(-200, 0));
+            if (k.isDown(KeyEvent.VK_RIGHT)) {
+                FallingBox.force.add(new Vector2D(1000, 0));
+            } else if (k.isDown(KeyEvent.VK_LEFT)) {
+                FallingBox.force.add(new Vector2D(-1000, 0));
             }
             if (k.justPressed(KeyEvent.VK_SPACE)) {
-                FallingBox.force.add(new Vector2D(0, 100000));
+                FallingBox.force.add(new Vector2D(0, 200000));
             }
 //            if (k.justPressed(KeyEvent.VK_N)) {
 //                t.setMessage("LEVEL 2").setColor(Color.RED);

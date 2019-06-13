@@ -29,6 +29,13 @@ public class PhysicsWorld {
                 a.velocity.add(a.force.scaled(dt/a.mass));
                 a.force = new Vector2D();
             }
+            //clamp velocity
+            if (Math.abs(a.velocity.x) > a.max_velocity.x) {
+                a.velocity.x = Math.copySign(a.max_velocity.x, a.velocity.x);
+            }
+            if (Math.abs(a.velocity.y) > a.max_velocity.y) {
+                a.velocity.y = Math.copySign(a.max_velocity.y, a.velocity.y);
+            }
             a.pos.add(a.velocity.scaled(dt));
         }
         //List of collisions
@@ -38,7 +45,6 @@ public class PhysicsWorld {
                 AABB b = objects.get(j);
                 if ((a.bitmask & b.bitmask) == 0 && (a.mass != 0.0 || b.mass != 0.0)) { //Dont share group therefore check collision
                     if (AABBvsAABB(a, b)) {
-                        //System.out.println("Collide " + i + " " + j);
                         Vector2D displacement = distanceAABBvsAABB(a, b);
                         Vector2D rv = b.velocity.copy().subtract(a.velocity);
                         Vector2D normal = b.pos.copy().subtract(a.pos);
@@ -60,7 +66,7 @@ public class PhysicsWorld {
                         a.velocity.subtract(impluse.scaled(a.inv_mass));
                         b.velocity.add(impluse.scaled(b.inv_mass));
 
-                        double percent = 0.2;
+                        double percent = 0.8;
                         Vector2D correction = normal.scale(displacement.getMag() / (a.inv_mass + b.inv_mass) * percent);
                         a.pos.subtract(correction.scaled(a.inv_mass));
                         b.pos.add(correction.scaled(b.inv_mass));

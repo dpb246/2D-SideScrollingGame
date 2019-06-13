@@ -12,6 +12,8 @@ public class AABB {
     public Vector2D force;
     public Vector2D velocity;
     public double restitution = 0.0;
+    public String type = "";
+    public Vector2D max_velocity = new Vector2D(500, 1000);
     public AABB() {
         this(new Vector2D(), 0, 0, 0.0);
     }
@@ -26,4 +28,5 @@ public class AABB {
         this.force = new Vector2D();
         this.velocity = new Vector2D();
     }
+    
 }
