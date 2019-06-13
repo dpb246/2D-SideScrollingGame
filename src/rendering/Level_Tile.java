@@ -1,5 +1,7 @@
 package rendering;
 import main.Vector2D;
+import physics.AABB;
+import physics.PhysicsWorld;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +15,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.Timer;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,7 +36,9 @@ public class Level_Tile {
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
             Collections.reverse(stream);
             int cury = 0;
+            PhysicsWorld world = PhysicsWorld.getInstance();
             for (String line : stream) {
+                int curx = 0;
                 for (char c : line.toCharArray()) {
                     images.add(new ArrayList<>());
                     switch (c) {
@@ -42,6 +47,7 @@ public class Level_Tile {
                             break;
                         case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
                             images.get(cury).add(floor);
+                            world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0)).bitmask = 1;
                             break;
                         case '*': //air
                             //do NOTHING LETS GO PARTY TIME
@@ -52,6 +58,7 @@ public class Level_Tile {
                             images.get(cury).add(null);
                             break;
                     }
+                    curx++;
                 }
                 cury += 1;
             }
