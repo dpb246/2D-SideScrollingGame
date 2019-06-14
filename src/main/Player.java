@@ -56,9 +56,9 @@ public class Player {
     }
     public void handle_inputs(Keyboard k) {
         if (k.isDown(KeyEvent.VK_RIGHT)) {
-            hitbox.velocity.x = 300;
+            hitbox.force.add(new Vector2D(3000, 0));
         } else if (k.isDown(KeyEvent.VK_LEFT)) {
-            hitbox.velocity.x = -300;
+            hitbox.force.add(new Vector2D(-3000, 0));
         }
         if (k.justPressed(KeyEvent.VK_SPACE)) {
             if (current_jump_count < max_jump_count) {

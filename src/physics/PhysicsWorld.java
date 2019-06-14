@@ -22,6 +22,9 @@ public class PhysicsWorld {
         objects.add(a);
         return a;
     }
+    public void remove(AABB a) {
+        objects.remove(a);
+    }
     public void step(double dt) {
         //apply gravity, forces, position
         for (AABB a : objects) {
@@ -72,21 +75,21 @@ public class PhysicsWorld {
                         a.pos.subtract(correction.scaled(a.inv_mass));
                         b.pos.add(correction.scaled(b.inv_mass));
 
-                        Vector2D tangent = rv.copy().subtract(normal.scaled(normal.dot(rv)));
+                        Vector2D tangent = rv.copy().subtract(displacement.scaled(displacement.dot(rv)));
                         tangent.normalize();
 
-                        double jt = -tangent.dot(rv);
-                        jt = jt / (a.inv_mass + b.inv_mass);
-
-                        double mu = Ults.hypot(a.staticFriction, b.staticFriction);
-                        Vector2D frictionImpulse;
-                        if (Math.abs(jt) < k * mu) {
-                            frictionImpulse = tangent.scaled(jt);
-                        } else {
-                            frictionImpulse = tangent.scaled(-j*Ults.hypot(a.dynamicFriction, b.dynamicFriction));
-                        }
-                        a.velocity.subtract(frictionImpulse.scaled(a.inv_mass));
-                        b.velocity.add(frictionImpulse.scaled(b.inv_mass));
+//                        double jt = -tangent.dot(rv);
+//                        jt = jt / (a.inv_mass + b.inv_mass);
+//
+//                        double mu = Ults.hypot(a.staticFriction, b.staticFriction);
+//                        Vector2D frictionImpulse;
+//                        if (Math.abs(jt) < k * mu) {
+//                            frictionImpulse = tangent.scaled(jt);
+//                        } else {
+//                            frictionImpulse = tangent.scaled(-k*Ults.hypot(a.dynamicFriction, b.dynamicFriction));
+//                        }
+//                        a.velocity.subtract(frictionImpulse.scaled(a.inv_mass));
+//                        b.velocity.add(frictionImpulse.scaled(b.inv_mass));
 
                         if (a.callbacks != null) {
                             a.callbacks.on_hit(b, normal);
