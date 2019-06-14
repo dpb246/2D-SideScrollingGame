@@ -47,10 +47,6 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
 
         Player p = new Player(50, 300);
 
-        AABB a = world.add(new AABB(new Vector2D(40, 120), 80, 80, 0));
-        a.restitution = 1.0;
-
-
         screen.setLevel(l);
         screen.getCurrentcam().setZoom(0.5);
         TextElement t = screen.addText("LEVEL 1", 5, 42);

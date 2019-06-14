@@ -32,11 +32,13 @@ public class Level_Tile {
     public Level_Tile load_from_file(String file_path) {
         Image spike = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/spikes.png")).getImage();
         Image floor = (new ImageIcon("resources/Pirate Adventure Textures/wood_floor_large.png")).getImage();
+        Image goal = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/Chests/chest_gold_l.png")).getImage();
         try {
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
             Collections.reverse(stream);
             int cury = 0;
             PhysicsWorld world = PhysicsWorld.getInstance();
+            AABB temp;
             for (String line : stream) {
                 int curx = 0;
                 for (char c : line.toCharArray()) {
@@ -44,19 +46,26 @@ public class Level_Tile {
                     switch (c) {
                         case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
                             images.get(cury).add(spike);
-                            world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + (TILE_SIZE-10)/2), TILE_SIZE, TILE_SIZE-10, 0)).bitmask = 1;
+                            temp = world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + (TILE_SIZE-10)/2), TILE_SIZE, TILE_SIZE-10, 0));
+                            temp.bitmask = 1;
+                            temp.type = "spike";
                             break;
                         case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
                             images.get(cury).add(floor);
-                            world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0)).bitmask = 1;
+                            temp = world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0));
+                            temp.bitmask = 1;
+                            temp.type = "wood";
                             break;
                         case '*': //air
                             //do NOTHING LETS GO PARTY TIME
                             images.get(cury).add(null);
                             break;
-                        case 'G': //goal
+                        case 'G': //goal resources/Pirate Adventure Textures/Other Sprites/Chests/chest_gold_l.png
                             // TODO: I mean did you really want to be able to end the level?
-                            images.get(cury).add(null);
+                            images.get(cury).add(goal);
+                            temp = world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0));
+                            temp.bitmask = 1;
+                            temp.type = "goal";
                             break;
                     }
                     curx++;

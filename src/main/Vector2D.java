@@ -47,6 +47,12 @@ public class Vector2D {
         double mag = getMag();
         return new Vector2D(this.x/mag, this.y/mag);
     }
+    public Vector2D normalize() {
+        double mag = getMag();
+        this.x /= mag;
+        this.y /= mag;
+        return this;
+    }
     public Vector2D scale(double scale) {
         this.x *= scale;
         this.y *= scale;

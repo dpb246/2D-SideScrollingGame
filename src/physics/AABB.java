@@ -14,6 +14,9 @@ public class AABB {
     public double restitution = 0.0;
     public String type = "";
     public Vector2D max_velocity = new Vector2D(500, 1000);
+    public callback callbacks = null;
+    public double staticFriction = 0.0;
+    public double dynamicFriction = 0.5;
     public AABB() {
         this(new Vector2D(), 0, 0, 0.0);
     }

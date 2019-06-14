@@ -16,7 +16,7 @@ public class Ults {
         double scale = Math.pow(10, digits);
         return Math.round(scale * num) / scale;
     }
-    public static double convertY(double cury) {
-        return (cury - RenderEngine.Wanted_HEIGHT)*-1;
+    public static double hypot(double a, double b) {
+        return Math.sqrt(a*a + b*b);
     }
 }

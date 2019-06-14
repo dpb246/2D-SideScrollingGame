@@ -1,6 +1,7 @@
 package physics;
 
 import com.sun.deploy.config.VerboseDefaultConfig;
+import main.Ults;
 import main.Vector2D;
 
 import java.util.ArrayList;
@@ -70,6 +71,29 @@ public class PhysicsWorld {
                         Vector2D correction = normal.scale(displacement.getMag() / (a.inv_mass + b.inv_mass) * percent);
                         a.pos.subtract(correction.scaled(a.inv_mass));
                         b.pos.add(correction.scaled(b.inv_mass));
+
+                        Vector2D tangent = rv.copy().subtract(normal.scaled(normal.dot(rv)));
+                        tangent.normalize();
+
+                        double jt = -tangent.dot(rv);
+                        jt = jt / (a.inv_mass + b.inv_mass);
+
+                        double mu = Ults.hypot(a.staticFriction, b.staticFriction);
+                        Vector2D frictionImpulse;
+                        if (Math.abs(jt) < k * mu) {
+                            frictionImpulse = tangent.scaled(jt);
+                        } else {
+                            frictionImpulse = tangent.scaled(-j*Ults.hypot(a.dynamicFriction, b.dynamicFriction));
+                        }
+                        a.velocity.subtract(frictionImpulse.scaled(a.inv_mass));
+                        b.velocity.add(frictionImpulse.scaled(b.inv_mass));
+
+                        if (a.callbacks != null) {
+                            a.callbacks.on_hit(b, normal);
+                        }
+                        if (b.callbacks != null) {
+                            b.callbacks.on_hit(a, normal);
+                        }
                     }
                 }
             }
@@ -98,12 +122,12 @@ public class PhysicsWorld {
         } else if (gapy <= 0.05) {
             disy = gapy;
         }
-
-        if (disy > disx) {
-            return new Vector2D(disx, 0);
-        } else if (disx > disy) {
+        if (disx > disy) {
             return new Vector2D(0, disy);
+        } else if (disy > disx) {
+            return new Vector2D(disx, 0);
+        } else {
+            return new Vector2D();
         }
-        return new Vector2D();
     }
 }
