@@ -28,5 +28,5 @@ public class AABB {
         this.force = new Vector2D();
         this.velocity = new Vector2D();
     }
-    
+
 }

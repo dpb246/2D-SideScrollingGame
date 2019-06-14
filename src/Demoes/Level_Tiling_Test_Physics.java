@@ -1,6 +1,7 @@
 package Demoes;
 
 import input.Keyboard;
+import main.Player;
 import main.Ults;
 import main.Vector2D;
 import physics.AABB;
@@ -44,9 +45,11 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
         Level_Tile l = new Level_Tile(0, 0).load_from_file(path_Level2);
         //Level_Tile l2 = new Level_Tile(0, 0).load_from_file(path_Level2);
 
-        Renderable r = screen.add(new Renderable(50, 500, 20, 20, 1.0, 0, "resources/wall.png"));
-        AABB FallingBox = world.add(new AABB(new Vector2D(50, 500), 20, 20, 10));
-        FallingBox.gravity = new Vector2D(0, -98*5);
+        Player p = new Player(50, 300);
+
+        AABB a = world.add(new AABB(new Vector2D(40, 120), 80, 80, 0));
+        a.restitution = 1.0;
+
 
         screen.setLevel(l);
         screen.getCurrentcam().setZoom(0.5);
@@ -54,14 +57,7 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
         long start_time = System.currentTimeMillis();
         while (true) {
             screen.repaint();
-            if (k.isDown(KeyEvent.VK_RIGHT)) {
-                FallingBox.force.add(new Vector2D(1000, 0));
-            } else if (k.isDown(KeyEvent.VK_LEFT)) {
-                FallingBox.force.add(new Vector2D(-1000, 0));
-            }
-            if (k.justPressed(KeyEvent.VK_SPACE)) {
-                FallingBox.force.add(new Vector2D(0, 200000));
-            }
+            p.handle_inputs(k);
 //            if (k.justPressed(KeyEvent.VK_N)) {
 //                t.setMessage("LEVEL 2").setColor(Color.RED);
 //                screen.setLevel(l2);
@@ -73,7 +69,7 @@ public class Level_Tiling_Test_Physics extends JFrame implements Runnable{
                 screen.getCurrentcam().reset().setZoom(0.5);
             }
             world.step(1.0/60.0);
-            r.setPosition(FallingBox.pos);
+            p.update();
             k.updateStates();
             long sleep = Math.max(1, 16-(System.currentTimeMillis()-start_time));
             Ults.sleep(sleep);

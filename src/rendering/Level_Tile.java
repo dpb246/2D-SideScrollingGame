@@ -44,6 +44,7 @@ public class Level_Tile {
                     switch (c) {
                         case '^': //spike resources/Pirate Adventure Textures/Other Sprites/spikes.png
                             images.get(cury).add(spike);
+                            world.add(new AABB(new Vector2D(curx*TILE_SIZE + TILE_SIZE/2, cury*TILE_SIZE + (TILE_SIZE-10)/2), TILE_SIZE, TILE_SIZE-10, 0)).bitmask = 1;
                             break;
                         case '=': //ground resources/Pirate Adventure Textures/wood_floor_large.png
                             images.get(cury).add(floor);
