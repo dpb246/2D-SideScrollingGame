@@ -3,12 +3,19 @@ package rendering;
 import javax.xml.soap.Text;
 import java.awt.*;
 
+/**
+ * Swing elements were too slow and weird soooo graphics2d drawString it was
+ */
 public class TextElement {
     private String message;
     private int x, y;
     private Font f;
     private Color c;
     private boolean visible;
+
+    /**
+     * All the constructors
+     */
     public TextElement(String mes, int x, int y, Color c, Font f) {
         this.message = mes;
         this.x = x;
@@ -26,15 +33,27 @@ public class TextElement {
     public TextElement(String mes, int x, int y, Color c) {
         this(mes, x, y, c, new Font("Arial", Font.PLAIN, 40));
     }
+
+    /**
+     * Draws it supporting \n characters!
+     * @param g
+     */
     public void draw(Graphics2D g) {
         Color previousColor = g.getColor();
         Font previousFont = g.getFont();
         g.setColor(c);
         g.setFont(f);
-        g.drawString(message, x, y);
+        int lineHeight = g.getFontMetrics().getHeight();
+        int tempy = y - lineHeight; //hacky but idc
+        for (String line : message.split("\n"))
+            g.drawString(line, x, tempy += lineHeight);
         g.setColor(previousColor);
         g.setFont(previousFont);
     }
+
+    /**
+     * MUCH WOW SETTERS!
+     */
     public TextElement setVisiblity(boolean value) {
         this.visible = value;
         return this;

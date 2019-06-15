@@ -6,6 +6,9 @@ import rendering.Renderable;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
+/**
+ * Useless, literally useless
+ */
 public class Level {
 
 

@@ -8,12 +8,21 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
+/**
+ * I don't understand why i made all the setters and getters...
+ * Stores all information so a image can been drawn to screen
+ * translates with camera
+ */
 public class Renderable {
     protected Image image;
     protected Vector2D pos, size;
     protected double angle;
     protected double scale; //All coordinates world level
     protected boolean visible = true, delete = false;
+
+    /**
+     * I put a lot of effort into the constructors ok, if you can't find one you like TOO BAD
+     */
     private Renderable(double x, double y, double w, double h, double scale, double angle) {
         this.pos = new Vector2D(x, y);
         this.size = new Vector2D(w, h);
@@ -36,6 +45,10 @@ public class Renderable {
         this(x, y, w, h, 1, 0);
         this.image = im;
     }
+
+    /**
+     * And here they begin...
+     */
     public Renderable setPosition(Vector2D pos) {
         this.pos = pos;
         return this;

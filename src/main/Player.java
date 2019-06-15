@@ -9,11 +9,15 @@ import rendering.Renderable;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * CLASSESSS YAAAAA....
+ * Stores all information relavent to the player including hitbox and keyboard
+ */
 public class Player {
-    AABB hitbox;
-    Renderable sprite;
-    final String sprite_right_path = "resources/wall.png";
-    public int health;
+    private AABB hitbox;
+    private Renderable sprite;
+    private final String sprite_right_path = "resources/wall.png";
+    private int health;
     public double x, y;
     private final Player myself = this;
     private int current_jump_count = 0;
@@ -45,6 +49,10 @@ public class Player {
         };
         sprite = RenderEngine.getInstance().add(new Renderable(x, y, 20, 20, sprite_right_path));
     }
+
+    /**
+     * At this point if you can't understand these methods try Alt-F4
+     */
     public void reset_jump() {
         this.current_jump_count = 0;
     }
@@ -54,6 +62,11 @@ public class Player {
     public void take_damage(int amount) {
         health -= amount;
     }
+
+    /**
+     * Make sure to pass the one and only keyboard instance just to make sure you are paying attention
+     * @param k
+     */
     public void handle_inputs(Keyboard k) {
         if (k.isDown(KeyEvent.VK_RIGHT)) {
             hitbox.force.add(new Vector2D(3000, 0));
@@ -71,8 +84,14 @@ public class Player {
             hitbox.velocity.y = 0;
         }
     }
+
+    /**
+     * Initially made to update sprite position after physics lol
+     * does some other useful things now i guess
+     */
     public void update() {
         sprite.setPosition(hitbox.pos);
+
         if (this.health <= 0) {
             System.out.println("You suck loser");
             this.health = 3;

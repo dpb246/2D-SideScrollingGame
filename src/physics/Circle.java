@@ -2,6 +2,9 @@ package physics;
 
 import main.Vector2D;
 
+/**
+ * I mean maybe one day these will do something?
+ */
 public class Circle {
     Vector2D pos;
     double radius;

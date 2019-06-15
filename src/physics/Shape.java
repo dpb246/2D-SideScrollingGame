@@ -2,7 +2,9 @@ package physics;
 import main.Vector2D;
 
 import java.util.ArrayList;
-
+/**
+ * I mean maybe one day these will do something? nice getters and setters though lol
+ */
 public class Shape {
     private Vector2D position;
     private Vector2D velocity;

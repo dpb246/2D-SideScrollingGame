@@ -6,6 +6,10 @@ import main.Vector2D;
 
 import java.util.ArrayList;
 
+/**
+ * Does Physics things
+ * Friction is sadly not negligible here
+ */
 public class PhysicsWorld {
     private ArrayList<AABB> objects;
     private static PhysicsWorld instance = null;
@@ -18,6 +22,10 @@ public class PhysicsWorld {
         }
         return instance;
     }
+
+    /**
+     * I mean they do what they say they do
+     */
     public AABB add(AABB a) {
         objects.add(a);
         return a;
@@ -25,22 +33,31 @@ public class PhysicsWorld {
     public void remove(AABB a) {
         objects.remove(a);
     }
+    public void removeAll() {
+        objects.clear();
+    }
+
+    /**
+     * Call each frame to update all objects in the world
+     * @param dt
+     */
     public void step(double dt) {
-        //apply gravity, forces, position
+        //apply gravity, forces, position to everything
         for (AABB a : objects) {
-            if (a.mass != 0.0) {
+            if (a.mass != 0.0) { //Massless things shouldn't be moving
                 a.force.add(a.gravity.scaled(a.mass));
                 a.velocity.add(a.force.scaled(dt/a.mass));
                 a.force = new Vector2D();
+
+                //clamp velocity
+                if (Math.abs(a.velocity.x) > a.max_velocity.x) {
+                    a.velocity.x = Math.copySign(a.max_velocity.x, a.velocity.x);
+                }
+                if (Math.abs(a.velocity.y) > a.max_velocity.y) {
+                    a.velocity.y = Math.copySign(a.max_velocity.y, a.velocity.y);
+                }
+                a.pos.add(a.velocity.scaled(dt));
             }
-            //clamp velocity
-            if (Math.abs(a.velocity.x) > a.max_velocity.x) {
-                a.velocity.x = Math.copySign(a.max_velocity.x, a.velocity.x);
-            }
-            if (Math.abs(a.velocity.y) > a.max_velocity.y) {
-                a.velocity.y = Math.copySign(a.max_velocity.y, a.velocity.y);
-            }
-            a.pos.add(a.velocity.scaled(dt));
         }
         //List of collisions
         for (int i = 0; i < objects.size(); i++) {
@@ -48,9 +65,12 @@ public class PhysicsWorld {
                 AABB a = objects.get(i);
                 AABB b = objects.get(j);
                 if ((a.bitmask & b.bitmask) == 0 && (a.mass != 0.0 || b.mass != 0.0)) { //Dont share group therefore check collision
-                    if (AABBvsAABB(a, b)) {
+                    if (AABBvsAABB(a, b)) { //Check for collision
+                        //if true then do work of calculating penetration depth
                         Vector2D displacement = distanceAABBvsAABB(a, b);
                         Vector2D rv = b.velocity.copy().subtract(a.velocity);
+
+                        //Sketchy way to do normal but since everything is a AABB it works
                         Vector2D normal = b.pos.copy().subtract(a.pos);
                         if (displacement.x == 0.0) {
                             normal.x = 0;
@@ -59,6 +79,7 @@ public class PhysicsWorld {
                             normal.x /= Math.abs(normal.x);
                             normal.y = 0;
                         }
+                        //Does actual cancelling of gravity and stuff
                         double velnormal = normal.dot(rv);
                         if (velnormal > 0) {
                             continue;
@@ -69,15 +90,15 @@ public class PhysicsWorld {
                         Vector2D impluse = normal.scaled(k);
                         a.velocity.subtract(impluse.scaled(a.inv_mass));
                         b.velocity.add(impluse.scaled(b.inv_mass));
-
-                        double percent = 0.8;
+                        //Position correction to prevent drifting downwards into other objects
+                        double percent = 0.8;  //Arbitrary number LETS GO
                         Vector2D correction = normal.scale(displacement.getMag() / (a.inv_mass + b.inv_mass) * percent);
                         a.pos.subtract(correction.scaled(a.inv_mass));
                         b.pos.add(correction.scaled(b.inv_mass));
 
-                        Vector2D tangent = rv.copy().subtract(displacement.scaled(displacement.dot(rv)));
-                        tangent.normalize();
-
+//          This is an attempt at friction introduced wall clips though so
+//                        Vector2D tangent = rv.copy().subtract(displacement.scaled(displacement.dot(rv)));
+//                        tangent.normalize();
 //                        double jt = -tangent.dot(rv);
 //                        jt = jt / (a.inv_mass + b.inv_mass);
 //
@@ -91,6 +112,7 @@ public class PhysicsWorld {
 //                        a.velocity.subtract(frictionImpulse.scaled(a.inv_mass));
 //                        b.velocity.add(frictionImpulse.scaled(b.inv_mass));
 
+                        //Call on hit functions for the objects
                         if (a.callbacks != null) {
                             a.callbacks.on_hit(b, normal);
                         }
@@ -102,6 +124,13 @@ public class PhysicsWorld {
             }
         }
     }
+
+    /**
+     * Checks if two AABB are colliding
+     * @param a
+     * @param b
+     * @return
+     */
     private boolean AABBvsAABB(AABB a, AABB b) {
         // Exit with no intersection if found separated along an axis
         if(a.pos.x+a.width/2 < b.pos.x-b.width/2 || a.pos.x-a.width/2 > b.pos.x+b.width/2) return false;
@@ -109,6 +138,13 @@ public class PhysicsWorld {
         // No separating axis found, therefor there is at least one overlapping axis
         return true;
     }
+
+    /**
+     * I LOVE IF STATEMENTS
+     * @param a
+     * @param b
+     * @return
+     */
     private Vector2D distanceAABBvsAABB(AABB a, AABB b) {
         //Assume collision
         double disx = 0;

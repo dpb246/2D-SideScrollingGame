@@ -2,6 +2,10 @@ package rendering;
 
 import main.Vector2D;
 
+/**
+ * Provides translation/scaling for all objects in RenderEngine rather useful if i may say so myself
+ * is just setters and getters though ugh
+ */
 public class Camera {
     private double zoom;
     private Vector2D position;

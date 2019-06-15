@@ -2,6 +2,10 @@ package physics;
 
 import main.Vector2D;
 
+/**
+ * I hate getters and setters change whatever you want
+ * stores data for an AABB
+ */
 public class AABB {
     public Vector2D pos;
     public double width, height;
