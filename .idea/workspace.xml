@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="GameV1" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e831c418-06ca-491f-a1b0-86bf5578a777" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/Levels/level0.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Levels/level1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Levels/level2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Level_Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Levels/level3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demoes/Level_Tiling_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Level_Tiling_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demoes/Level_Tiling_Test_Physics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Level_Tiling_Test_Physics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demoes/Camera_Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Camera_Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/GameV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/Horipad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Level_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/physics/AABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/physics/AABB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rendering/Level_Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rendering/Level_Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rendering/TextElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rendering/TextElement.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Demoes/GameV1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
+            <state relative-caret-position="476">
+              <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -35,12 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rendering/TextElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-              <folding>
-                <element signature="e#997#998#0" expanded="true" />
-                <element signature="e#1030#1031#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="816">
+              <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -48,12 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rendering/Level_Tile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="50" column="19" lean-forward="true" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-              <folding>
-                <element signature="e#4337#4338#0" expanded="true" />
-                <element signature="e#4372#4373#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -61,27 +57,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="116" column="9" lean-forward="true" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
-              <folding>
-                <element signature="e#2192#2193#0" expanded="true" />
-                <element signature="e#2229#2230#0" expanded="true" />
-                <element signature="e#2589#2590#0" expanded="true" />
-                <element signature="e#2615#2616#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1375">
+              <caret line="141" selection-start-line="141" selection-end-line="141" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/physics/AABB.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/Levels/level3.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Level_Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+            <state relative-caret-position="170">
+              <caret line="10" column="58" lean-forward="true" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1005#1006#0" expanded="true" />
-                <element signature="e#1037#1038#0" expanded="true" />
+                <element signature="e#1316#1317#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,28 +105,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/Levels/level1.txt">
+        <entry file="file://$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+            <state relative-caret-position="765">
+              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/Levels/level2.txt">
+        <entry file="file://$PROJECT_DIR$/src/Demoes/Camera_Demo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/Levels/test.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="2" selection-end-column="26" />
+            <state relative-caret-position="544">
+              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -160,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/main/Vector2D.java" />
         <option value="$PROJECT_DIR$/src/rendering/RenderEngine.java" />
         <option value="$PROJECT_DIR$/src/physics/PhysicsWorld.java" />
-        <option value="$PROJECT_DIR$/src/physics/AABB.java" />
         <option value="$PROJECT_DIR$/src/physics/callback.java" />
         <option value="$PROJECT_DIR$/src/physics/Circle.java" />
         <option value="$PROJECT_DIR$/src/physics/Shape.java" />
@@ -172,11 +173,15 @@
         <option value="$PROJECT_DIR$/src/Demoes/Level_Tiling_Test_Physics.java" />
         <option value="$PROJECT_DIR$/resources/Levels/level2.txt" />
         <option value="$PROJECT_DIR$/resources/Levels/level1.txt" />
+        <option value="$PROJECT_DIR$/src/rendering/TextElement.java" />
+        <option value="$PROJECT_DIR$/src/Demoes/Camera_Demo.java" />
+        <option value="$PROJECT_DIR$/resources/Levels/level3.txt" />
+        <option value="$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java" />
+        <option value="$PROJECT_DIR$/src/physics/AABB.java" />
         <option value="$PROJECT_DIR$/src/main/Player.java" />
+        <option value="$PROJECT_DIR$/src/Demoes/GameV1.java" />
         <option value="$PROJECT_DIR$/src/rendering/Level_Tile.java" />
         <option value="$PROJECT_DIR$/src/main/Level_Manager.java" />
-        <option value="$PROJECT_DIR$/src/rendering/TextElement.java" />
-        <option value="$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java" />
       </list>
     </option>
   </component>
@@ -256,14 +261,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560715963314" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560718926020" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -302,7 +307,7 @@
       </method>
     </configuration>
     <configuration name="Manager Test" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Demoes.Level_Manager_Test" />
+      <option name="MAIN_CLASS_NAME" value="Demoes.GameV1" />
       <module name="project-AJG-v21" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -373,7 +378,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14978679" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -403,12 +408,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/wood_floor_large.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Other Sprites/dagger.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Other Sprites/dagger_l.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -479,16 +478,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Pirate Sprites/pirate_idle_r.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Pirate Sprites/pirate_idle.png">
       <provider selected="true" editor-type-id="images" />
@@ -602,13 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/physics/AABB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Demoes/Level_Tiling_Test_Physics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8">
@@ -640,24 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/Levels/level0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rendering/Level_Tile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="50" column="19" lean-forward="true" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-          <folding>
-            <element signature="e#4337#4338#0" expanded="true" />
-            <element signature="e#4372#4373#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Demoes/Level_Tiling_Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -665,46 +629,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Demoes/GameV1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rendering/TextElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+        <state relative-caret-position="816">
+          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/physics/AABB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/Levels/level3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/Levels/level0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
           <folding>
-            <element signature="e#997#998#0" expanded="true" />
-            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Demoes/Camera_Demo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rendering/Level_Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="116" column="9" lean-forward="true" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
-          <folding>
-            <element signature="e#2192#2193#0" expanded="true" />
-            <element signature="e#2229#2230#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#2615#2616#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1375">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Level_Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        <state relative-caret-position="170">
+          <caret line="10" column="58" lean-forward="true" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#1316#1317#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="66" column="19" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -713,11 +712,17 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
+          <artifact-editor>
+            <show-content>
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>GameV1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -748,7 +753,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>1.8.0_152</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -765,6 +770,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

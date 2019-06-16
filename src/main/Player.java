@@ -25,6 +25,7 @@ public class Player {
     private int max_jump_count = 2;
     private boolean want_next_level = false;
     private boolean need_restart = false;
+    private boolean no_arrows = false;
     public Player(int x, int y) {
         this.x = (double) x;
         this.y = (double) y;
@@ -97,20 +98,23 @@ public class Player {
      * @param k
      */
     public void handle_inputs(Keyboard k) {
+        no_arrows = false;
         if (k.isDown(KeyEvent.VK_RIGHT)) {
-            hitbox.force.add(new Vector2D(3000, 0));
+            hitbox.force.add(new Vector2D(4000, 0));
         } else if (k.isDown(KeyEvent.VK_LEFT)) {
-            hitbox.force.add(new Vector2D(-3000, 0));
+            hitbox.force.add(new Vector2D(-4000, 0));
+        } else {
+            no_arrows = true;
         }
         if (k.justPressed(KeyEvent.VK_SPACE)) {
             if (current_jump_count < max_jump_count) {
                 hitbox.force.add(new Vector2D(0, 300000));
                 current_jump_count++;
             }
+            on_ground = false;
         }
         if (k.justPressed(KeyEvent.VK_S)) {
             hitbox.velocity.x = 0;
-            hitbox.velocity.y = 0;
         }
         if (k.justPressed(KeyEvent.VK_R)) {
             this.need_restart = true;
@@ -126,6 +130,12 @@ public class Player {
         if (this.health <= 0) {
             need_restart = true;
             this.health = 1;
+        }
+        if (on_ground && no_arrows) {
+            hitbox.velocity.x *= 0.9;
+            if (Math.abs(hitbox.velocity.x) < 0.5) {
+                hitbox.velocity.x = 0;
+            }
         }
     }
 }

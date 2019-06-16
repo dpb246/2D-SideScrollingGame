@@ -60,11 +60,12 @@ public class Level_Tile {
      * @return
      */
     public Level_Tile load_from_file(String file_path) {
-        Image spike = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/spikes.png")).getImage(); //Preload images
-        Image floor = (new ImageIcon("resources/Pirate Adventure Textures/wood_floor_large.png")).getImage();
-        Image goal = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/Chests/chest_gold_l.png")).getImage();
+        Image spike = (new ImageIcon("./resources/spikes.png")).getImage(); //Preload images
+        Image floor = (new ImageIcon("./resources/wood_floor_large.png")).getImage();
+        Image goal = (new ImageIcon("./resources/chest_gold_l.png")).getImage();
         try {
             if (Files.notExists(Paths.get(file_path))){
+                System.out.println("Didn't Find file " + file_path);
                 return null;
             }
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));

@@ -11,9 +11,10 @@ import rendering.TextElement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
-public class Level_Manager_Test extends JFrame implements Runnable{
-    public Level_Manager_Test() {
+public class GameV1 extends JFrame implements Runnable{
+    public GameV1() {
         initUI();
         (new Thread(this)).start(); //Need to seperate game logic from main thread to allow it to do repaints
     }
@@ -21,7 +22,7 @@ public class Level_Manager_Test extends JFrame implements Runnable{
         add(Keyboard.getInstance());
         add(RenderEngine.getInstance().setCamera(new Camera(0,0,1)));
         setResizable(false);
-        setTitle("TEST Demo");
+        setTitle("Garbage Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         requestFocusInWindow();
@@ -30,7 +31,7 @@ public class Level_Manager_Test extends JFrame implements Runnable{
     }
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            Level_Manager_Test ex = new Level_Manager_Test();
+            GameV1 ex = new GameV1();
         });
     }
     @Override
@@ -40,11 +41,10 @@ public class Level_Manager_Test extends JFrame implements Runnable{
         Keyboard k = Keyboard.getInstance();
         Player p = new Player(0, 0);
 
-        Level_Manager lmanage = new Level_Manager(p, 3);
+        Level_Manager lmanage = new Level_Manager(p, 4);
 
         screen.getCurrentcam().setZoom(0.5);  //Cause why change sprite size when you can do this LOL
 
-        //TextElement t = screen.addText("LEVEL 1", 5, 42);
         TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace to jump (You have double jump)\ns to stop movement\nr to restart", 5, 20, 18);
         instructions.setColor(Color.RED);
 
@@ -54,8 +54,19 @@ public class Level_Manager_Test extends JFrame implements Runnable{
             p.handle_inputs(k);
             world.step(1.0/60.0); //Assumes 60 fps
             p.update();
-            k.updateStates();
+
             lmanage.update();
+
+            //Dev Hack cause i don't feel like playing them all to test one
+            if (k.isDown(KeyEvent.VK_PERIOD)){
+                for (int x = KeyEvent.VK_1; x <= KeyEvent.VK_9; x++) {
+                    if (k.justPressed(x)) {
+                        lmanage.changeLevel(x-KeyEvent.VK_1);
+                    }
+                }
+            }
+
+            k.updateStates();
             long sleep = Math.max(1, 16-(System.currentTimeMillis()-start_time)); //Attempt to provide stable 60 fps
             Ults.sleep(sleep);
             start_time = System.currentTimeMillis();
