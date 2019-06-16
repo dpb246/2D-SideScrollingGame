@@ -7,6 +7,7 @@ import rendering.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.nio.file.NoSuchFileException;
 
 public class Level_Tiling_Test extends JFrame implements Runnable{
     public Level_Tiling_Test() {
@@ -35,8 +36,14 @@ public class Level_Tiling_Test extends JFrame implements Runnable{
         Keyboard k = Keyboard.getInstance();
         String path_Level1 = "resources/Levels/test.txt";
         String path_Level2 = "resources/Levels/test2.txt";
-        Level_Tile l = new Level_Tile(0, 0).load_from_file(path_Level1);
-        Level_Tile l2 = new Level_Tile(0, 0).load_from_file(path_Level2);
+        Level_Tile l, l2;
+        try {
+            l = new Level_Tile(0, 0).load_from_file(path_Level1);
+            l2 = new Level_Tile(0, 0).load_from_file(path_Level2);
+        } catch (Exception e) {
+            System.out.println("WELP");
+            return;
+        }
         screen.setLevel(l);
         screen.getCurrentcam().setZoom(0.5);
         TextElement t = screen.addText("LEVEL 1", 5, 42);

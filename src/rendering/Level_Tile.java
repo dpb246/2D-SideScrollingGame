@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +27,7 @@ import java.util.stream.Stream;
 public class Level_Tile {
     private ArrayList<ArrayList<Image>> images;
     private double x, y;
+    private Vector2D player_spawn = null;
     public final static int TILE_SIZE = 80;
 
     /**
@@ -37,6 +39,17 @@ public class Level_Tile {
         images = new ArrayList<>();
         this.x = x;
         this.y = y;
+    }
+    /**
+     * Idk why you would want to offset it but just in case
+     * @param x
+     * @param y
+     */
+    public Level_Tile(double x, double y, String path){
+        images = new ArrayList<>();
+        this.x = x;
+        this.y = y;
+        this.load_from_file(path);
     }
     public Level_Tile() {
         this(0, 0);
@@ -51,6 +64,9 @@ public class Level_Tile {
         Image floor = (new ImageIcon("resources/Pirate Adventure Textures/wood_floor_large.png")).getImage();
         Image goal = (new ImageIcon("resources/Pirate Adventure Textures/Other Sprites/Chests/chest_gold_l.png")).getImage();
         try {
+            if (Files.notExists(Paths.get(file_path))){
+                return null;
+            }
             ArrayList<String> stream = new ArrayList<>(Files.lines(Paths.get(file_path)).collect(Collectors.toList()));
             Collections.reverse(stream); //Invert file to draw it from the bottom of the screen up, otherwise wouldn't know how long the file is
             int cury = 0;
@@ -83,6 +99,10 @@ public class Level_Tile {
                             temp.bitmask = 1;
                             temp.type = "goal";
                             break;
+                        case 'S'://Player Spawn
+                            player_spawn = new Vector2D(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2);
+                            images.get(cury).add(null);
+                            break;
                     }
                     curx++;
                 }
@@ -93,7 +113,9 @@ public class Level_Tile {
         }
         return this;
     }
-
+    public Vector2D getPlayer_spawn() {
+        return player_spawn.copy();
+    }
     /**
      * Surprise Surprise take a guess, it draws everything in this level tile on to the graphics2d
      * @param g2d

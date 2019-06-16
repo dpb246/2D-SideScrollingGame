@@ -12,6 +12,7 @@ public class TextElement {
     private Font f;
     private Color c;
     private boolean visible;
+    private boolean centerx = false;
 
     /**
      * All the constructors
@@ -33,7 +34,9 @@ public class TextElement {
     public TextElement(String mes, int x, int y, Color c) {
         this(mes, x, y, c, new Font("Arial", Font.PLAIN, 40));
     }
-
+    public void centerOnX() {
+        this.centerx = true;
+    }
     /**
      * Draws it supporting \n characters!
      * @param g
@@ -45,8 +48,14 @@ public class TextElement {
         g.setFont(f);
         int lineHeight = g.getFontMetrics().getHeight();
         int tempy = y - lineHeight; //hacky but idc
-        for (String line : message.split("\n"))
-            g.drawString(line, x, tempy += lineHeight);
+
+        for (String line : message.split("\n")) {
+            int tempx = x;
+            if (centerx) {
+                tempx = x - g.getFontMetrics().stringWidth(line) / 2;
+            }
+            g.drawString(line, tempx, tempy += lineHeight);
+        }
         g.setColor(previousColor);
         g.setFont(previousFont);
     }

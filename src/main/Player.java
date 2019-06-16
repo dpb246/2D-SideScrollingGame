@@ -20,8 +20,11 @@ public class Player {
     private int health;
     public double x, y;
     private final Player myself = this;
+    private boolean on_ground = false;
     private int current_jump_count = 0;
     private int max_jump_count = 2;
+    private boolean want_next_level = false;
+    private boolean need_restart = false;
     public Player(int x, int y) {
         this.x = (double) x;
         this.y = (double) y;
@@ -29,6 +32,7 @@ public class Player {
         hitbox = PhysicsWorld.getInstance().add(new AABB(new Vector2D(x, y), 20, 20, 10));
         hitbox.gravity = new Vector2D(0, -98*6);
         hitbox.restitution = 1.0;
+        hitbox.type = "player";
         hitbox.callbacks = new callback(){
             @Override
             public void on_hit(AABB other, Vector2D normal) {
@@ -42,6 +46,7 @@ public class Player {
                     case "wood":
                         break;
                 }
+                myself.seton_ground(true);
                 if (normal.y > 0.0 || normal.x != 0.0) {
                     myself.reset_jump();
                 }
@@ -58,11 +63,35 @@ public class Player {
     }
     public void win() {
         System.out.println("YAY");
+        want_next_level = true;
     }
     public void take_damage(int amount) {
         health -= amount;
     }
-
+    public void seton_ground(boolean state) {this.on_ground = state;}
+    public boolean getWant_next_level() {
+        return want_next_level;
+    }
+    public void loading_level(Vector2D startPos) {
+        want_next_level = false;
+        hitbox = PhysicsWorld.getInstance().add(hitbox); //Re add
+        sprite = RenderEngine.getInstance().add(sprite); //Re add
+        hitbox.force = new Vector2D();
+        hitbox.velocity = new Vector2D();
+        hitbox.pos = startPos;
+        sprite.setPosition(startPos);
+    }
+    public void restart(Vector2D startPos) {
+        need_restart = false;
+        System.out.println("Restarted");
+        hitbox.pos = startPos;
+        hitbox.force = new Vector2D();
+        hitbox.velocity = new Vector2D();
+        sprite.setPosition(startPos);
+    }
+    public boolean getWantRestart() {
+        return need_restart;
+    }
     /**
      * Make sure to pass the one and only keyboard instance just to make sure you are paying attention
      * @param k
@@ -83,6 +112,9 @@ public class Player {
             hitbox.velocity.x = 0;
             hitbox.velocity.y = 0;
         }
+        if (k.justPressed(KeyEvent.VK_R)) {
+            this.need_restart = true;
+        }
     }
 
     /**
@@ -91,10 +123,9 @@ public class Player {
      */
     public void update() {
         sprite.setPosition(hitbox.pos);
-
         if (this.health <= 0) {
-            System.out.println("You suck loser");
-            this.health = 3;
+            need_restart = true;
+            this.health = 1;
         }
     }
 }
