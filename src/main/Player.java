@@ -30,7 +30,7 @@ public class Player {
         this.x = (double) x;
         this.y = (double) y;
         this.health = 1;
-        hitbox = PhysicsWorld.getInstance().add(new AABB(new Vector2D(x, y), 20, 20, 10));
+        hitbox = PhysicsWorld.getInstance().add(new AABB(new Vector2D(x, y), 15, 15, 10));
         hitbox.gravity = new Vector2D(0, -98*6);
         hitbox.restitution = 1.0;
         hitbox.type = "player";
@@ -46,7 +46,7 @@ public class Player {
                         break;
                     case "wood":
                         if (normal.x != 0) {
-                            myself.hitbox.force.add(new Vector2D(normal.x*1000,0));
+                            myself.hitbox.force.add(new Vector2D(normal.x*1500,0));
                         }
                         break;
                 }
@@ -57,6 +57,7 @@ public class Player {
             }
         };
         sprite = RenderEngine.getInstance().add(new Renderable(x, y, 20, 20, sprite_right_path));
+        sprite.setScale(3.0/4.0);
     }
 
     /**
@@ -103,16 +104,16 @@ public class Player {
     public void handle_inputs(Keyboard k) {
         no_arrows = false;
         if (k.isDown(KeyEvent.VK_RIGHT)) {
-            hitbox.force.add(new Vector2D(6000, 0));
+            hitbox.force.add(new Vector2D(4000, 0));
         } else if (k.isDown(KeyEvent.VK_LEFT)) {
-            hitbox.force.add(new Vector2D(-6000, 0));
+            hitbox.force.add(new Vector2D(-4000, 0));
         } else {
             no_arrows = true;
         }
         if (k.justPressed(KeyEvent.VK_SPACE)) {
             if (current_jump_count < max_jump_count) {
                 hitbox.velocity.y = Math.max(hitbox.velocity.y, 0);
-                hitbox.force.add(new Vector2D(0, 230000));
+                hitbox.force.add(new Vector2D(0, 180000));
                 current_jump_count++;
             }
             on_ground = false;

@@ -28,7 +28,7 @@ public class Level_Tile {
     private ArrayList<ArrayList<Image>> images;
     private double x, y;
     private Vector2D player_spawn = null;
-    public final static int TILE_SIZE = 80;
+    public final static int TILE_SIZE = 32;
 
     /**
      * Idk why you would want to offset it but just in case
@@ -60,9 +60,9 @@ public class Level_Tile {
      * @return
      */
     public Level_Tile load_from_file(String file_path) {
-        Image spike = (new ImageIcon("./resources/spikes.png")).getImage(); //Preload images
-        Image floor = (new ImageIcon("./resources/ice_block.png")).getImage();
-        Image goal = (new ImageIcon("./resources/chest_gold_l.png")).getImage();
+        Image spike = (new ImageIcon("./resources/Blocks/spikes.png")).getImage(); //Preload images
+        Image floor = (new ImageIcon("./resources/Blocks/iceBlock.png")).getImage();
+        Image goal = (new ImageIcon("./resources/Blocks/blueOrb.png")).getImage();
         try {
             if (Files.notExists(Paths.get(file_path))){
                 System.out.println("Didn't Find file " + file_path);

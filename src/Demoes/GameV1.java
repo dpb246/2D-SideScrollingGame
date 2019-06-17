@@ -46,7 +46,7 @@ public class GameV1 extends JFrame implements Runnable{
 
         Level_Manager lmanage = new Level_Manager(p, 5);
 
-        screen.getCurrentcam().setZoom(0.5);  //Cause why change sprite size when you can do this LOL
+        //screen.getCurrentcam().setZoom(0.5);  //Cause why change sprite size when you can do this LOL
 
         TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace to jump (You have double jump)\ns to stop movement\nr to restart", 5, 20, 18);
         instructions.setColor(Color.RED);
