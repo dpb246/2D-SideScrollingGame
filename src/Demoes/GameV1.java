@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 
 public class GameV1 extends JFrame implements Runnable{
     public GameV1() {
+
+
         initUI();
         (new Thread(this)).start(); //Need to seperate game logic from main thread to allow it to do repaints
     }
@@ -27,6 +29,7 @@ public class GameV1 extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         requestFocusInWindow();
         pack();
+        this.setLocation(0, 0);
         this.setVisible(true); //PUT THIS LAST
     }
     public static void main(String[] args) {
@@ -41,7 +44,7 @@ public class GameV1 extends JFrame implements Runnable{
         Keyboard k = Keyboard.getInstance();
         Player p = new Player(0, 0);
 
-        Level_Manager lmanage = new Level_Manager(p, 4);
+        Level_Manager lmanage = new Level_Manager(p, 5);
 
         screen.getCurrentcam().setZoom(0.5);  //Cause why change sprite size when you can do this LOL
 

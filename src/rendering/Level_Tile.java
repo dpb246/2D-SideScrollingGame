@@ -61,7 +61,7 @@ public class Level_Tile {
      */
     public Level_Tile load_from_file(String file_path) {
         Image spike = (new ImageIcon("./resources/spikes.png")).getImage(); //Preload images
-        Image floor = (new ImageIcon("./resources/wood_floor_large.png")).getImage();
+        Image floor = (new ImageIcon("./resources/ice_block.png")).getImage();
         Image goal = (new ImageIcon("./resources/chest_gold_l.png")).getImage();
         try {
             if (Files.notExists(Paths.get(file_path))){

@@ -150,7 +150,7 @@ public class PhysicsWorld {
         double disx = 0;
         double lengthx = Math.abs(b.pos.x - a.pos.x);
         double gapx = lengthx - a.width*0.5  - b.width*0.5;
-        if (gapx <= -0.1) {
+        if (gapx <= 0.0) {
             disx = -gapx;
         }
         double disy = 0;
@@ -158,8 +158,6 @@ public class PhysicsWorld {
         double gapy = lengthy - a.height*0.5  - b.height*0.5;
         if (gapy <= 0.0) {
             disy = -gapy;
-        } else if (gapy <= 0.05) {
-            disy = gapy;
         }
         if (disx > disy) {
             return new Vector2D(0, disy);

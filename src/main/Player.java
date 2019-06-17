@@ -45,6 +45,9 @@ public class Player {
                         myself.win();
                         break;
                     case "wood":
+                        if (normal.x != 0) {
+                            myself.hitbox.force.add(new Vector2D(normal.x*1000,0));
+                        }
                         break;
                 }
                 myself.seton_ground(true);
