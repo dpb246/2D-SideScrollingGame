@@ -100,15 +100,16 @@ public class Player {
     public void handle_inputs(Keyboard k) {
         no_arrows = false;
         if (k.isDown(KeyEvent.VK_RIGHT)) {
-            hitbox.force.add(new Vector2D(4000, 0));
+            hitbox.force.add(new Vector2D(6000, 0));
         } else if (k.isDown(KeyEvent.VK_LEFT)) {
-            hitbox.force.add(new Vector2D(-4000, 0));
+            hitbox.force.add(new Vector2D(-6000, 0));
         } else {
             no_arrows = true;
         }
         if (k.justPressed(KeyEvent.VK_SPACE)) {
             if (current_jump_count < max_jump_count) {
-                hitbox.force.add(new Vector2D(0, 300000));
+                hitbox.velocity.y = Math.max(hitbox.velocity.y, 0);
+                hitbox.force.add(new Vector2D(0, 230000));
                 current_jump_count++;
             }
             on_ground = false;
