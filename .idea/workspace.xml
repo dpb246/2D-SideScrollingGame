@@ -7,16 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e831c418-06ca-491f-a1b0-86bf5578a777" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/Levels/level3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demoes/Camera_Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Camera_Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demoes/Level_Manager_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/GameV1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demoes/Physics_Falling_Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/Horipad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/physics/AABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/physics/AABB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rendering/Level_Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rendering/Level_Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/spikes.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/spikes.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/wood_floor_large.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/wood_floor_large.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,15 +19,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Demoes/GameV1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rendering/TextElement.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -81,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Level_Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="-155">
               <caret line="10" column="58" lean-forward="true" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -93,6 +76,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/wood_floor_large.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -212,50 +200,7 @@
             <path>
               <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Levels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Demoes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-              <item name="Keyboard.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="physics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-AJG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-AJG" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="rendering" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -376,9 +321,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -387,7 +331,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5597686" visible="true" weight="0.28710726" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5597686" visible="true" weight="0.28710726" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -408,12 +352,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Other Sprites/dagger_l.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Other Sprites/dagger_r.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/Pirate Adventure Textures/Other Sprites/heart_up.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -695,9 +633,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/spikes.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Level_Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="-155">
           <caret line="10" column="58" lean-forward="true" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -706,6 +647,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/wood_floor_large.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">
