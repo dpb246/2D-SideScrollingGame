@@ -1,10 +1,13 @@
 <component name="libraryTable">
   <library name="jinput">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/resources/jinput/jinput-2.0.9-natives-all.jar!/" />
-      <root url="jar://$PROJECT_DIR$/resources/jinput/jinput-2.0.9.jar!/" />
+      <root url="file://$PROJECT_DIR$/resources/jinput" />
     </CLASSES>
     <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/resources/jinput" />
+    </NATIVE>
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/resources/jinput" recursive="false" />
   </library>
 </component>
