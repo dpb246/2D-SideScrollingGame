@@ -47,6 +47,8 @@ public class Player {
                     case "wood":
                         if (normal.x != 0) {
                             myself.hitbox.force.add(new Vector2D(normal.x*1500,0));
+                        } else {
+                            myself.hitbox.force.add(new Vector2D(0, normal.y*100));
                         }
                         break;
                 }

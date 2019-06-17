@@ -2,6 +2,7 @@ package rendering;
 import main.Vector2D;
 import physics.AABB;
 import physics.PhysicsWorld;
+import physics.callback;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,6 +64,7 @@ public class Level_Tile {
         Image spike = (new ImageIcon("./resources/Blocks/spikes.png")).getImage(); //Preload images
         Image floor = (new ImageIcon("./resources/Blocks/iceBlock.png")).getImage();
         Image goal = (new ImageIcon("./resources/Blocks/blueOrb.png")).getImage();
+        Image sand = (new ImageIcon("./resources/Blocks/sandBlock.png")).getImage();
         try {
             if (Files.notExists(Paths.get(file_path))){
                 System.out.println("Didn't Find file " + file_path);
@@ -103,6 +105,11 @@ public class Level_Tile {
                         case 'S'://Player Spawn
                             player_spawn = new Vector2D(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2);
                             images.get(cury).add(null);
+                            break;
+                        case 'D': //Disappearing Block
+                            images.get(cury).add(sand);
+                            temp = world.add(new AABB(new Vector2D(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0));
+                            temp.bitmask = 1;
                             break;
                     }
                     curx++;
