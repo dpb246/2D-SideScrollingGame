@@ -1,6 +1,9 @@
-package main;
+package Demoes;
 
 import input.Keyboard;
+import main.Level_Manager;
+import main.Player;
+import main.Ults;
 import physics.PhysicsWorld;
 import rendering.Camera;
 import rendering.RenderEngine;
@@ -41,11 +44,11 @@ public class GameV1 extends JFrame implements Runnable{
         Keyboard k = Keyboard.getInstance();
         Player p = new Player(0, 0);
 
-        Level_Manager lmanage = new Level_Manager(p, 8);
+        Level_Manager lmanage = new Level_Manager(p, 5);
 
-        TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace to jump (You have double jump)\ns to stop movement\nr to restart", 1000, 20, 18);
-        String death_base_message = "You have died: %d times";
-        TextElement deathCount = screen.addText(String.format(death_base_message, p.getDeathCount()), 5, 20, 18);
+        screen.getCurrentcam().setZoom(0.5);  //Cause why change sprite size when you can do this LOL
+
+        TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace to jump (You have double jump)\ns to stop movement\nr to restart", 5, 20, 18);
         instructions.setColor(Color.RED);
 
         long start_time = System.currentTimeMillis();
@@ -56,8 +59,6 @@ public class GameV1 extends JFrame implements Runnable{
             p.update();
 
             lmanage.update();
-
-            deathCount.setMessage(String.format(death_base_message, p.getDeathCount()));
 
             //Dev Hack cause i don't feel like playing them all to test one
             if (k.isDown(KeyEvent.VK_PERIOD)){

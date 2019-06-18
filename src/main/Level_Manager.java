@@ -38,20 +38,12 @@ public class Level_Manager {
     public boolean getPlayerWon() {
         return player_won;
     }
-    private void restart() {
-        p.restart(current_level_tile.getPlayer_spawn());
-        current_level_tile.reset();
-    }
     public void update() {
         if (p.getWant_next_level()) {
             this.load();
         }
         if (p.getWantRestart()) {
-            restart();
+            p.restart(current_level_tile.getPlayer_spawn());
         }
-        if (p.getPos().x < -20 || p.getPos().y < -30 || p.getPos().x > current_level_tile.getMaxX()*2 || p.getPos().y > RenderEngine.Wanted_HEIGHT*2) {
-            restart();
-        }
-        current_level_tile.update();
     }
 }
