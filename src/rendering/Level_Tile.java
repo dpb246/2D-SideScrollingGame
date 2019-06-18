@@ -1,5 +1,8 @@
 package rendering;
+import main.DisappearingBlock;
+import main.GameObject;
 import main.Vector2D;
+import main.movingSpike;
 import physics.AABB;
 import physics.PhysicsWorld;
 import physics.callback;
@@ -27,8 +30,10 @@ import java.util.stream.Stream;
  */
 public class Level_Tile {
     private ArrayList<ArrayList<Image>> images;
+    private ArrayList<GameObject> objs;
     private double x, y;
     private Vector2D player_spawn = null;
+    private int maxX = 0;
     public final static int TILE_SIZE = 32;
 
     /**
@@ -38,6 +43,7 @@ public class Level_Tile {
      */
     public Level_Tile(double x, double y) {
         images = new ArrayList<>();
+        objs = new ArrayList<>();
         this.x = x;
         this.y = y;
     }
@@ -47,9 +53,7 @@ public class Level_Tile {
      * @param y
      */
     public Level_Tile(double x, double y, String path){
-        images = new ArrayList<>();
-        this.x = x;
-        this.y = y;
+        this(x, y);
         this.load_from_file(path);
     }
     public Level_Tile() {
@@ -107,22 +111,47 @@ public class Level_Tile {
                             images.get(cury).add(null);
                             break;
                         case 'D': //Disappearing Block
-                            images.get(cury).add(sand);
-                            temp = world.add(new AABB(new Vector2D(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2), TILE_SIZE, TILE_SIZE, 0));
-                            temp.bitmask = 1;
+                            images.get(cury).add(null);
+                            objs.add(new DisappearingBlock(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2, TILE_SIZE));
+                            break;
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            images.get(cury).add(null);
+                            objs.add(new movingSpike(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2, TILE_SIZE, c-'0'));
                             break;
                     }
                     curx++;
                 }
                 cury += 1;
+                maxX = Math.max(maxX, (int) x+curx*TILE_SIZE + TILE_SIZE);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return this;
     }
+    public int getMaxX() {
+        return maxX;
+    }
     public Vector2D getPlayer_spawn() {
         return player_spawn.copy();
+    }
+    public void update() {
+        for (GameObject g : objs) {
+            g.update();
+        }
+    }
+    public void reset() {
+        for (GameObject g : objs) {
+            g.reset();
+        }
     }
     /**
      * Surprise Surprise take a guess, it draws everything in this level tile on to the graphics2d

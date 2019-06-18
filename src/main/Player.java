@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * CLASSESSS YAAAAA....
- * Stores all information relavent to the player including hitbox and keyboard
+ * Stores all information relavent to the player including hitbox and keyboard bindings
  */
 public class Player {
     private AABB hitbox;
@@ -23,6 +23,7 @@ public class Player {
     private boolean on_ground = false;
     private int current_jump_count = 0;
     private int max_jump_count = 2;
+    private int death_count = 0;
     private boolean want_next_level = false;
     private boolean need_restart = false;
     private boolean no_arrows = false;
@@ -31,6 +32,7 @@ public class Player {
         this.y = (double) y;
         this.health = 1;
         hitbox = PhysicsWorld.getInstance().add(new AABB(new Vector2D(x, y), 15, 15, 10));
+        hitbox.bitmask = 2;
         hitbox.gravity = new Vector2D(0, -98*6);
         hitbox.restitution = 1.0;
         hitbox.type = "player";
@@ -46,7 +48,7 @@ public class Player {
                         break;
                     case "wood":
                         if (normal.x != 0) {
-                            myself.hitbox.force.add(new Vector2D(normal.x*1500,0));
+                            myself.hitbox.force.add(new Vector2D(normal.x*1000,0));
                         } else {
                             myself.hitbox.force.add(new Vector2D(0, normal.y*100));
                         }
@@ -61,7 +63,9 @@ public class Player {
         sprite = RenderEngine.getInstance().add(new Renderable(x, y, 20, 20, sprite_right_path));
         sprite.setScale(3.0/4.0);
     }
-
+    public Vector2D getPos() {
+        return hitbox.pos;
+    }
     /**
      * At this point if you can't understand these methods try Alt-F4
      */
@@ -69,7 +73,6 @@ public class Player {
         this.current_jump_count = 0;
     }
     public void win() {
-        System.out.println("YAY");
         want_next_level = true;
     }
     public void take_damage(int amount) {
@@ -90,14 +93,17 @@ public class Player {
     }
     public void restart(Vector2D startPos) {
         need_restart = false;
-        System.out.println("Restarted");
         hitbox.pos = startPos;
         hitbox.force = new Vector2D();
         hitbox.velocity = new Vector2D();
         sprite.setPosition(startPos);
+        death_count++;
     }
     public boolean getWantRestart() {
         return need_restart;
+    }
+    public int getDeathCount() {
+        return death_count;
     }
     /**
      * Make sure to pass the one and only keyboard instance just to make sure you are paying attention
@@ -112,7 +118,7 @@ public class Player {
         } else {
             no_arrows = true;
         }
-        if (k.justPressed(KeyEvent.VK_SPACE)) {
+        if (k.justPressed(KeyEvent.VK_SPACE) || k.justPressed(KeyEvent.VK_UP)) {
             if (current_jump_count < max_jump_count) {
                 hitbox.velocity.y = Math.max(hitbox.velocity.y, 0);
                 hitbox.force.add(new Vector2D(0, 180000));
