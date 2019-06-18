@@ -17,7 +17,7 @@ public class AABB {
     public Vector2D velocity;
     public double restitution = 0.0;
     public String type = "";
-    public Vector2D max_velocity = new Vector2D(400, 1000);
+    public Vector2D max_velocity = new Vector2D(300, 1000);
     public callback callbacks = null;
     public AABB() {
         this(new Vector2D(), 0, 0, 0.0);
