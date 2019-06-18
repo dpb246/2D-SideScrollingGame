@@ -48,6 +48,7 @@ public class GameV1 extends JFrame implements Runnable{
         TextElement deathCount = screen.addText(String.format(death_base_message, p.getDeathCount()), 5, 20, 18);
         instructions.setColor(Color.RED);
 
+        screen.getCurrentcam().trackPlayer(p);
         long start_time = System.currentTimeMillis();
         while (!lmanage.getPlayerWon()) {
             screen.repaint();

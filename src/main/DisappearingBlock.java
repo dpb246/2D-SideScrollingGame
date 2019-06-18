@@ -19,6 +19,7 @@ public class DisappearingBlock extends GameObject{
     public DisappearingBlock(double x, double y, double TILE_SIZE) {
         hitbox = PhysicsWorld.getInstance().add(new AABB(new Vector2D(x, y), TILE_SIZE, TILE_SIZE, 0));
         hitbox.bitmask = 1;
+        hitbox.type = "sand";
         hitbox.callbacks = new callback() {
             @Override
             public void on_hit(AABB other, Vector2D normal) {

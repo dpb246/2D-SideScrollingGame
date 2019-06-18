@@ -146,6 +146,8 @@ public class RenderEngine extends JPanel {
      * @param io ImageObserver to pass to draw call
      */
     public void drawAll(Graphics g, ImageObserver io) {
+        currentcam.update();
+        
         if (currentcam == null) throw new RuntimeException("Did not set current camera!");
         Graphics2D g2d = (Graphics2D) g;
         g2d.translate(0.0, Wanted_HEIGHT); //Flip y to be 0 at bottom

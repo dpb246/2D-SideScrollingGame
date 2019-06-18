@@ -21,10 +21,6 @@ public class Player {
     public double x, y;
     private final Player myself = this;
     private boolean on_ground = false;
-    private boolean on_wall = false;
-    private boolean used_right_walljump = false;
-    private boolean used_left_walljump = false;
-    private Vector2D normal;
     private int current_jump_count = 0;
     private int max_jump_count = 2;
     private int death_count = 0;
@@ -50,6 +46,7 @@ public class Player {
                     case "goal":
                         myself.win();
                         break;
+                    case "sand":
                     case "wood":
                         if (normal.x != 0) {
                             myself.hitbox.force.add(new Vector2D(normal.x*1000,0));
@@ -122,11 +119,8 @@ public class Player {
         } else {
             no_arrows = true;
         }
-        if (k.justPressed(KeyEvent.VK_SPACE)) {
-            if (on_wall){
-                wallJump(normal, 230000, 1000000);
-
-            } else if (current_jump_count < max_jump_count) {
+        if (k.justPressed(KeyEvent.VK_SPACE) || k.justPressed(KeyEvent.VK_UP)) {
+            if (current_jump_count < max_jump_count) {
                 hitbox.velocity.y = Math.max(hitbox.velocity.y, 0);
                 hitbox.force.add(new Vector2D(0, 180000));
                 current_jump_count++;
@@ -157,21 +151,5 @@ public class Player {
                 hitbox.velocity.x = 0;
             }
         }
-    }
-
-    public void wallJump(Vector2D normal, int jumpForce, int pushForce){
-
-        if (normal.x < 0 && !used_right_walljump){
-            hitbox.force.add(new Vector2D(normal.x * -1 * pushForce, jumpForce));
-            used_left_walljump = false;
-            on_wall = false;
-        }
-
-        if (normal.x > 0 && !used_left_walljump){
-            hitbox.force.add(new Vector2D(normal.x * -1 * pushForce, jumpForce));
-            used_right_walljump = false;
-            on_wall = false;
-        }
-
     }
 }

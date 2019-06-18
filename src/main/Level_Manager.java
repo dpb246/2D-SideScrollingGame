@@ -21,6 +21,7 @@ public class Level_Manager {
     private void load() {
         PhysicsWorld.getInstance().removeAll(); //Reset Physics
         RenderEngine.getInstance().removeAllRenderables(); //Reset drawing
+
         if (current_level_number >= number_of_levels) {
             player_won = true;
             return;
@@ -41,6 +42,7 @@ public class Level_Manager {
     private void restart() {
         p.restart(current_level_tile.getPlayer_spawn());
         current_level_tile.reset();
+        RenderEngine.getInstance().getCurrentcam().reset();
     }
     public void update() {
         if (p.getWant_next_level()) {

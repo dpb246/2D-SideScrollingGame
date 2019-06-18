@@ -1,5 +1,6 @@
 package rendering;
 
+import main.Player;
 import main.Vector2D;
 
 /**
@@ -9,6 +10,7 @@ import main.Vector2D;
 public class Camera {
     private double zoom;
     private Vector2D position;
+    private Player p = null;
     public Camera(double x, double y, double zoom) {
         position = new Vector2D(x, y);
         this.zoom = zoom;
@@ -57,5 +59,15 @@ public class Camera {
     }
     public Vector2D getPos() {
         return this.position;
+    }
+    public void trackPlayer(Player p) {
+        this.p = p;
+    }
+    public void update() {
+        if (p != null) {
+            if (p.getPos().x - position.x > 450) {
+                position.x += p.getPos().x - position.x - 450;
+            }
+        }
     }
 }
