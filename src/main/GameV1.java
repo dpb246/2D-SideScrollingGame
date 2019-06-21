@@ -43,12 +43,12 @@ public class GameV1 extends JFrame implements Runnable{
 
         Level_Manager lmanage = new Level_Manager(p, 8);
 
-        TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace to jump (You have double jump)\ns to stop movement\nr to restart", 1000, 20, 18);
+        TextElement instructions = screen.addText("Left/Right Arrows to move\nSpace or UP to jump (You have double jump)\nr to restart", 1000, 20, 18);
         String death_base_message = "You have died: %d times";
         TextElement deathCount = screen.addText(String.format(death_base_message, p.getDeathCount()), 5, 20, 18);
         instructions.setColor(Color.RED);
 
-        screen.getCurrentcam().trackPlayer(p);
+        //screen.getCurrentcam().trackPlayer(p);
         long start_time = System.currentTimeMillis();
         while (!lmanage.getPlayerWon()) {
             screen.repaint();
@@ -57,7 +57,6 @@ public class GameV1 extends JFrame implements Runnable{
             p.update();
 
             lmanage.update();
-
             deathCount.setMessage(String.format(death_base_message, p.getDeathCount()));
 
             //Dev Hack cause i don't feel like playing them all to test one

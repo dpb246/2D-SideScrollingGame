@@ -11,9 +11,6 @@ import java.awt.*;
 
 public class movingSpike extends GameObject {
     public AABB hitbox;
-    private int frame_count;
-    final int frames_before_disappear = 30;
-    private boolean playerTouched = false;
     private Image sand = (new ImageIcon("./resources/Blocks/spikes.png")).getImage();
     private Renderable image;
     private int moveDistance;

@@ -65,7 +65,7 @@ public class Player {
         sprite.setScale(3.0/4.0);
     }
     public Vector2D getPos() {
-        return hitbox.pos;
+        return hitbox.pos.copy();
     }
     /**
      * At this point if you can't understand these methods try Alt-F4
@@ -127,9 +127,9 @@ public class Player {
             }
             on_ground = false;
         }
-        if (k.justPressed(KeyEvent.VK_S)) {
-            hitbox.velocity.x = 0;
-        }
+//        if (k.justPressed(KeyEvent.VK_S)) {
+//            hitbox.velocity.x = 0;
+//        }
         if (k.justPressed(KeyEvent.VK_R)) {
             this.need_restart = true;
         }

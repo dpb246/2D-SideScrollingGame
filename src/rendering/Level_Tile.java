@@ -114,7 +114,7 @@ public class Level_Tile {
                             images.get(cury).add(null);
                             objs.add(new DisappearingBlock(x+curx*TILE_SIZE + TILE_SIZE/2, y+cury*TILE_SIZE + TILE_SIZE/2, TILE_SIZE));
                             break;
-                        case '1':
+                        case '1': //Moving Enemies
                         case '2':
                         case '3':
                         case '4':
